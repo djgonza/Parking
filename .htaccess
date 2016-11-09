@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule ([^/]*\.(woff|ttf|svg|js|ico|gif|jpg|png|css|htc|xml|txt))$ /client/$1 [L]
