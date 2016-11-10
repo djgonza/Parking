@@ -12,6 +12,9 @@
 	include "client/sections/inicio.html";
 	include "client/sections/tarifas.html";
 	include "client/sections/reserva.html";
+	include "client/sections/pf.html";
+	include "client/sections/servicios.html";
+	include "client/sections/ubicacion.html";
 	include "client/sections/404.html";
 
 	//incluimos el pie

@@ -3,4 +3,5 @@ RewriteEngine On
 RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ router.php [QSA,L]
+#RewriteRule ^ router.php [QSA,L]
+RewriteRule ^ parking/router.php [QSA,L]

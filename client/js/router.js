@@ -12,6 +12,18 @@ class Enrutador {
 				element: $('#inicio'),
 				visible: false
 			},
+			servicios : {
+				element: $('#servicios'),
+				visible: false
+			},
+			ubicacion: {
+				element: $('#ubicacion'),
+				visible: false
+			},
+			pf: {
+				element: $('#pf'),
+				visible: false
+			},
 			tarifas: {
 				element: $('#tarifas'),
 				visible: false

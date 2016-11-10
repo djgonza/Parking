@@ -26,6 +26,15 @@ class Eventos {
 		$("#navBtnTarifas").click (function () {
 			enrutador.navegar ("/tarifas");
 		});
+		$("#navBtnPF").click (function () {
+			enrutador.navegar ("/pf");
+		});
+		$("#navBtnUbicacion").click (function () {
+			enrutador.navegar ("/ubicacion");
+		});
+		$("#navBtnServicios").click (function () {
+			enrutador.navegar ("/servicios");
+		});
 	}
 
 
