@@ -1,8 +1,9 @@
 $(function () {
 
-	/*$("body").load("/prueba", function () {
-		alert ("Hecho!!!!");
-	});*/
-
+	/* 
+		iniciamos el enrutador
+	*/
+	var enrutador = new Enrutador ();
+	var eventos = new Eventos (enrutador);
 
 });
