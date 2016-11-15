@@ -1,0 +1,86 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Roboto, sans-serif
+}
+body{
+	background: rgba(238, 238, 238, 1.0);
+}
+
+header{
+	background: rgba(255, 255, 255, 0.8);
+}
+header img{
+	height: 4.5em;
+}
+nav ul{
+	padding: 0;
+}
+nav ul i{
+	display: none !important;
+}
+nav ul i{
+ 	list-style: none;
+	text-decoration: none;
+	color: rgba(39, 39, 39, 1.0);
+	padding: 0.2em 1em 0.2em 1em;
+	border-top: 4px solid rgba(0, 0, 0, 0);
+	font-size: 3em !important;
+    cursor: pointer;
+}
+nav ul li{
+	list-style: none;
+	text-decoration: none;
+	color: rgba(39, 39, 39, 1.0);
+	padding: 2em 1em 2em 1em;
+	border-top: 4px solid rgba(0, 0, 0, 0);
+	font-size: 1.2em;
+    cursor: pointer;
+}
+nav ul li:hover, nav ul i:hover{
+	color: rgba(229, 126, 31, 1.0);
+	border-top: 4px solid rgba(229, 126, 31, 1.0);	
+}
+nav ul li:active, nav ul i:active{
+	color: rgba(229, 126, 31, 1.0);
+}
+
+footer{
+	background: rgba(80, 80, 80, 1.0);
+	color: rgba(255, 255, 255, 1.0);
+	padding: 1em 0 1em 0; 
+}
+
+/*
+*****************************************************************
+************************* Clases comunes ************************
+*****************************************************************
+*/
+.row{
+	display: flex;
+	align-items: center;
+}
+.jaround{
+	justify-content: space-around;
+}
+.jbetween{
+	justify-content: space-between;
+}
+.jcenter{
+	justify-content: center;
+}
+
+
+
+
+
+
+
+@media (max-width: 450px) {
+	nav ul li {
+		display: none;
+	}
+	nav ul i{
+		display: block !important;
+	}
+}
