@@ -1,93 +1,80 @@
 <?php
 
-class Controller { 
-
-    /* 
-        Definimos las variables de la clase
-    */
-    public static $rutaRecursos = "client/secciones/";
-    public static $head = "client/secciones/head.html";
-    public static $footer = "client/secciones/footer.html";
-    public static $err404 = "client/secciones/404.html";
-    public static $extension = ".html";
-    var $url;
-    var $secciones;
+class Controller {
     
+    const DIR_SECCIONES = "client/secciones/"; 
+    const FILE_HEAD = self::DIR_SECCIONES."head.html";
+    const FILE_FOOTER = self::DIR_SECCIONES."footer.html";
+    const DIR_ERROR404 = self::DIR_SECCIONES."404.html";
+
 
     public function Controller(){
 
         /*
-            Url
+            Peticiones Ajax
         */
-        $this->url = str_replace("/", "", $_SERVER["REDIRECT_URL"]);
-        /*
-            Definicion de secciones
-        */
-        $this->secciones = array(
-            "inicio" => self::$rutaRecursos."inicio".self::$extension, 
-            "tarifas" => self::$rutaRecursos."tarifas".self::$extension, 
-            "servicios" => self::$rutaRecursos."servicios".self::$extension
-        );
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+
+            // Piden una seccion
+            if(isset($_GET["seccion"])){
+
+                $this -> getSeccion ($_GET["seccion"]);
+                exit;
+
+            }
+
+        }
 
         /*
-            Peticiones get
+            Peticiones Navegador
         */
-        $this->peticionesGet();
-        /*
-            Peticiones post
-        */
-        $this->peticionesPost();
-        /*
-            Peticiones generales
-        */
-        $this->peticionesVacias();
+        $this -> getClientApp();
 
     }
 
     /*
-        selecciona la seccion en funcion de la url
+        Servir aplicacion al cliente
     */
-    private function peticionesVacias () {
+    private function getClientApp() {
 
-        //default -> /
-        if ($this->url == "") {
-            include self::$head;
-            include $this->secciones["inicio"];
-            include self::$footer;
-            exit;
-        }
-        
-        //seccion -> /url
-        if(array_key_exists($this->url, $this->secciones)){
-            include $this->secciones[$this->url];
-            exit;
+        include self::FILE_HEAD;
+        include self::FILE_FOOTER;
+
+    }
+
+    /*
+        Comprueba que la seccion existe
+        y devuelve el html
+        o devuelve notFound
+    */
+    private function getSeccion ($seccion) {
+
+        // Buscamos la seccion
+        $directorio = opendir(self::DIR_SECCIONES);
+        while ($archivo = readdir($directorio)) {
+
+            if($seccion == explode(".",$archivo)[0]){
+
+                include self::DIR_SECCIONES.$archivo;
+                exit;
+
+            }
+
         }
 
-        //el recurso no existe
-        include self::$err404;
+        // Seccion no encontrada
+        $this->notFound();
+
+    }
+
+    /* 
+        Pagina no encontrada
+    */
+    private function notFound (){
+        include self::DIR_ERROR404;
         exit;
-
     }
 
-    /*
-        Gestiona las peticiones get
-    */
-    private function peticionesGet () {
-        if(!empty($_GET)){
-            echo "get";
-            exit;
-        }
-    }
-
-    /*
-        Gestiona las peticiones post
-    */
-    private function peticionesPost () {
-        if(!empty($_POST)){
-            echo "post";
-            exit;
-        }
-    }
 
 }
 

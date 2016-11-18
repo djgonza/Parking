@@ -1,98 +1,134 @@
 "use strict";
 
-class Enrutador {
+class Router {
 
 	constructor () {
 		
-		//url en la que nos encontramos
-		this.url = window.location.pathname;
-		//definimos las secciones de la web
-		this.secciones = {
-			inicio: {
-				element: $('#inicio'),
-				visible: false
-			},
-			servicios : {
-				element: $('#servicios'),
-				visible: false
-			},
-			ubicacion: {
-				element: $('#ubicacion'),
-				visible: false
-			},
-			pf: {
-				element: $('#pf'),
-				visible: false
-			},
-			tarifas: {
-				element: $('#tarifas'),
-				visible: false
-			},
-			reserva: {
-				element: $('#reserva'),
-				visible: false
-			},
-			404: {
-				element: $('#404'),
-				visible: false
-			}
-		};
-		//mostramos la seccion atual
-		this.mostrarSeccion ();
+		this.secciones = new Array(); // Inicializa el array secciones
 
-	}
-
-	/* 
-		utilidades de la clase
-	*/
-	navegar (url, titulo) {
-		//reemplazamos la url
-		window.history.pushState(null, titulo, url);
-		//actualizamos la variable de la clase
-		this.url = url;
-		//mostramos la nueva seccion
-		this.mostrarSeccion();
-
-	}
-
-	/* 
-		Decide que seccion mostrar en funcion de la url
-		Si la ruta es / muestra inicio;
-		Si la seccion no existe muestra 404
-		Si la seccion existe la muestra
-	*/
-	mostrarSeccion () {
-		
-		//ocultamos todas las secciones
-		this.ocultarTodasSecciones();
-
-		//seccion por defecto
-		if(this.url == "/"){ 
-			this.secciones.inicio.element.show();
-		//buscamos la seccion por nombre
+		// Si no hay ninguna seccion actualmente redirigimos a inicio
+		var seccionActual = this.getActuallySeccion();
+		if (seccionActual == ""){
+			this.navegar("/inicio", "Inicio");
+			
+		// Si no navegamos a la seccion
 		}else{
-			var urlParseada = this.url.substring(1, this.url.length);
-			//seccion no encontrada
-			if(this.secciones[urlParseada] === undefined) {
-				this.secciones[404].element.show();
-				return;
-			}
-			//mostramos la seccion
-			this.secciones[urlParseada].element.show();
+			this.navegar(seccionActual, seccionActual.charAt(0).toUpperCase()+seccionActual.slice(1));
 		}
+		
 
 	}
 
-	ocultarTodasSecciones () {
-		//console.log(this.secciones);
-		$.each (this.secciones, function (name, seccion) {
-			seccion.element.hide();
-		});
+	/* 
+		Comprovar si una seccion existe
+	*/
+	issetSeccion (seccion) {
+
+		return seccion in this.secciones;
+
+	}
+
+	/*
+		Comprueba el estado de una seccion
+	*/
+	statusSeccion (seccion) {
+
+
+
+	}
+
+	/*
+		Mostrar seccion
+	*/
+	showSeccion (seccion) {
+		this.secciones[seccion].show();
+	}
+	/*
+		Ocultar seccion
+	*/
+	hideSeccion (seccion) {
+		this.secciones[seccion].hide();
+	}
+	/*
+		Devulve la seccion actual
+	*/
+	getActuallySeccion () {
+		return window.location.href.split("/")[3];
 	}
 
 	/*
 
-	
+		Muestra la seccion requerida
+		Si no existe la descarga
+			url: String -> /url
+			titulo: String
+
 	*/
+	navegar (url, titulo) {
+
+		// Seccion actual
+		var seccionActual = this.getActuallySeccion();
+		var seccionPedidaUrl = url.replace("/","");
+
+		// Oculta la seccion actual
+		if (this.secciones[seccionActual]) {
+			this.hideSeccion(seccionActual);
+		}
+
+		// Comprueba si existe la seccion requerida
+		if (this.secciones[seccionPedidaUrl]) {
+
+			// Muestra la seccion
+			this.showSeccion(seccionPedidaUrl);
+
+		// Si no existe
+		}else{
+
+			// Descarga la seccion
+			this.getSeccion(seccionPedidaUrl);
+
+		}
+
+		// Actualizamos el state del navegador
+		window.history.pushState(null, titulo, url);
+
+	}
+
+	/*
+
+		Pedir seccion al server
+
+	*/
+	getSeccion (seccion) {
+
+		// Ambito de las variables
+		var arraySecciones = this.secciones;
+
+		// Realiza la peticion ajax
+		$.ajax({
+
+			url: "index.php",
+			data: { 
+				"seccion": seccion
+			},
+			cache: false,
+			type: "GET",
+			success: function(response) {
+				
+				// Crea el elemento
+				arraySecciones[seccion] = $(response);
+				// Añadimos la seccion al body
+				$("main").append(arraySecciones[seccion]);
+
+			},
+			error: function(xhr) {
+				
+				alert("Error al pedir seccion");
+
+			}
+
+		});
+
+	}
 
 }

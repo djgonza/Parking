@@ -2,9 +2,9 @@
 
 class Eventos {
 
-	constructor (enrutador) {
+	constructor (router) {
 
-		this.enrutador = enrutador;
+		this.router = router;
 		this.inicializarEventos ();
 
 	}
@@ -12,28 +12,25 @@ class Eventos {
 	inicializarEventos () {
 		
 		//definimos el router aqui por el ambito de las variables
-		var enrutador = this.enrutador;
+		var router = this.router;
 		
 		/* 
 			Cabecera / barra de navegacion 
 		*/
 		$("#navBtnInicio").click (function () {
-			enrutador.navegar ("/");
+			router.navegar ("/inicio", "Inicio");
 		});
 		$("#navBtnReservas").click (function () {
-			enrutador.navegar ("/reserva");
+			router.navegar ("/reservas", "Reservas");
 		});
 		$("#navBtnTarifas").click (function () {
-			enrutador.navegar ("/tarifas");
-		});
-		$("#navBtnPF").click (function () {
-			enrutador.navegar ("/pf");
+			router.navegar ("/tarifas", "Tarifas");
 		});
 		$("#navBtnUbicacion").click (function () {
-			enrutador.navegar ("/ubicacion");
+			router.navegar ("/ubicacion", "Ubicacion");
 		});
 		$("#navBtnServicios").click (function () {
-			enrutador.navegar ("/servicios");
+			router.navegar ("/servicios", "Servicios");
 		});
 	}
 

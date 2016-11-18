@@ -6,7 +6,7 @@
 	require_once "lib/controller.php";
 
 	/*
-		Iniciamos el router
+		Iniciamos el controlador
 	*/
 	$controller = new Controller();
 
