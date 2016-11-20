@@ -12,7 +12,10 @@ $(function () {
 		//eliminamos el evento
 		$("main").unbind('DOMNodeInserted');
 		//creamos el mapa
-		mapa = new Mapa(document.getElementById("ubicacion"));
+		mapa = new Mapa(document.getElementById("ubicacionMap"));
+		//inicializamos el boton de navegacion del map
+		eventos.initEventBtnNavigator(mapa);
+
 	});
 
 

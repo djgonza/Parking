@@ -5,18 +5,17 @@ class Eventos {
 	constructor (router) {
 
 		this.router = router;
-		this.inicializarEventos ();
+		this.initEventNav (this.router);
 
 	}
 
-	inicializarEventos () {
-		
-		//definimos el router aqui por el ambito de las variables
-		var router = this.router;
-		
-		/* 
-			Cabecera / barra de navegacion 
-		*/
+	/*
+
+		Eventos barra de navegacion
+
+	*/
+	initEventNav (router) {
+
 		$("#navBtnInicio").click (function () {
 			router.navegar ("/inicio", "Inicio");
 		});
@@ -32,6 +31,24 @@ class Eventos {
 		$("#navBtnServicios").click (function () {
 			router.navegar ("/servicios", "Servicios");
 		});
+
+		$("#btnHeadNav").click (function () {
+			$("nav ul li").toggle();
+		});
+
+	}
+
+	/*
+
+		Inicia el evento para navegar del mapa
+
+	*/
+	initEventBtnNavigator (map) {
+
+		$("#ubicacionBtnNavegar").click (function () {
+			map.makeRuteToDefault();
+		});
+
 	}
 
 

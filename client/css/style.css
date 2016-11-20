@@ -1,34 +1,46 @@
+/* Resets */
 *{
 	margin: 0;
 	padding: 0;
 	font-family: Roboto, sans-serif
 }
+
+li {
+	list-style: none;
+	text-decoration: none;
+}
+
+ul {
+	padding: 0;
+}
+
+body, html, main {
+	height: 100%;
+}
+
+/* 
+	Styles base
+*/
+
 body{
 	background: rgba(238, 238, 238, 1.0);
 }
 
 header{
 	background: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
 }
 header img{
 	height: 4.5em;
 }
-nav ul{
-	padding: 0;
+
+header ul li img {
+	width: 32px;
+    height: 32px;
 }
-nav ul i{
-	display: none !important;
-}
-nav ul i{
- 	list-style: none;
-	text-decoration: none;
-	color: rgba(39, 39, 39, 1.0);
-	padding: 0.2em 1em 0.2em 1em;
-	border-top: 4px solid rgba(0, 0, 0, 0);
-	font-size: 3em !important;
-    cursor: pointer;
-}
-nav ul li{
+header nav ul li{
 	list-style: none;
 	text-decoration: none;
 	color: rgba(39, 39, 39, 1.0);
@@ -37,18 +49,23 @@ nav ul li{
 	font-size: 1.2em;
     cursor: pointer;
 }
-nav ul li:hover, nav ul i:hover{
+header nav ul li:hover, nav ul i:hover{
 	color: rgba(229, 126, 31, 1.0);
 	border-top: 4px solid rgba(229, 126, 31, 1.0);	
 }
-nav ul li:active, nav ul i:active{
+header nav ul li:active, nav ul i:active{
 	color: rgba(229, 126, 31, 1.0);
 }
-
+main {
+	position: relative;
+}
 footer{
 	background: rgba(80, 80, 80, 1.0);
 	color: rgba(255, 255, 255, 1.0);
-	padding: 1em 0 1em 0; 
+	padding: 1em 0 1em 0;
+	bottom: 0;
+    position: static;
+    width: 100%;
 }
 
 /*
@@ -70,17 +87,101 @@ footer{
 	justify-content: center;
 }
 
+/*
 
+	Elementos
 
+*/
 
+#btnHeadNav {
+	display: none;
+	font-size: 3em;
+	cursor: pointer;
+}
 
+#ubicacion {
+	position: absolute !important;
+    height: 100%;
+    width: 100%;
+}
 
+	#ubicacionMap {
+		height: 100%;
+	}
 
-@media (max-width: 450px) {
+	#ubicacionBtnNavegar {
+	    position: absolute;
+	    z-index: 500;
+	    bottom: 35px;
+	    left: 25px;
+	    border-radius: 50%;
+	    border: 2px solid rgba(229, 126, 31, 1.0);
+	    font-size: 3em;
+	    color: rgba(229, 126, 31, 1.0);
+	    background: rgba(255, 255, 255, 0.8);
+	}
+
+	#ubicacionBtnNavegar:hover {
+		cursor: pointer;
+	}
+
+#tarifas {
+
+}
+
+/*
+	
+	Medias
+
+*/
+
+@media (max-width: 768px) {
+	nav ul {
+		display: block !important;
+	    position: absolute;
+	    width: 50%;
+	    margin: 0 -25%;
+	    top: 5em;
+	    background: rgba(255, 255, 255, 0.8);
+	}
 	nav ul li {
 		display: none;
 	}
-	nav ul i{
+	#btnHeadNav {
 		display: block !important;
 	}
+}
+
+/*
+
+	Animaciones
+
+*/
+
+@keyframes loadRotate {
+    from {
+		-ms-transform: rotate(0deg); /* IE 9 */
+    	-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+    	transform: rotate(0deg);
+    }
+    75% {
+    	-ms-transform: rotate(300deg); /* IE 9 */
+    	-webkit-transform: rotate(300deg); /* Chrome, Safari, Opera */
+    	transform: rotate(300deg);
+    }
+    to {
+    	-ms-transform: rotate(360deg); /* IE 9 */
+    	-webkit-transform: rotate(360deg); /* Chrome, Safari, Opera */
+    	transform: rotate(360deg);
+   	}
+}
+
+#mapLoadUser {
+	animation-name: loadRotate;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	position: absolute;
+	top: 50%;
+	font-size: 5em;
+	left: 50%;
 }

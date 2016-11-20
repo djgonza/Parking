@@ -3,9 +3,9 @@
 class Controller {
     
     const DIR_SECCIONES = "client/secciones/"; 
-    const FILE_HEAD = self::DIR_SECCIONES."head.html";
-    const FILE_FOOTER = self::DIR_SECCIONES."footer.html";
-    const DIR_ERROR404 = self::DIR_SECCIONES."404.html";
+    const FILE_HEAD = "client/secciones/head.html";
+    const FILE_FOOTER = "client/secciones/footer.html";
+    const DIR_ERROR404 = "client/secciones/404.html";
 
 
     public function Controller(){
