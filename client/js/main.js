@@ -1,22 +1,13 @@
 $(function () {
 
 	/* 
-		iniciamos el enrutador
+		Iniciamos las clases
 	*/
 	var router = new Router ();
-	var eventos = new Eventos (router);
-	var mapa;
+	var mapa = new Mapa();
+	var eventos = new Eventos (router, mapa);
 
-	// Inicializacion del map
-	$("main").on('DOMNodeInserted', "#ubicacion", function () {
-		//eliminamos el evento
-		$("main").unbind('DOMNodeInserted');
-		//creamos el mapa
-		mapa = new Mapa(document.getElementById("ubicacionMap"));
-		//inicializamos el boton de navegacion del map
-		eventos.initEventBtnNavigator(mapa);
-
-	});
+	//new DataPicker($("#datePicker"));
 
 
 });

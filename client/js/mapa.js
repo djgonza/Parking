@@ -2,34 +2,68 @@
 
 class Mapa {
 
-	constructor (mapElement) {
+	constructor () {
 
-		// Localizaciones
+		/* 
+
+			Localizaciones
+
+		*/
 		this.locationsDefault = {
 			mariana: {lat: 42.825498, lng: -1.631604}
 		};
 
-		// Variables
+
+		/*
+
+			Variables
+
+		*/
 		this.locationUser;
+		this.map;
+		this.mapElement;
+        this.directionsService;
+  		this.directionsDisplay;
+		this.mapMarks = [];
+
+
+	}
+
+	/*
+		Inicializa el mapa
+	*/
+	initMap (mapElement) {
+
+		this.map = mapElement;
 		this.map = new google.maps.Map(mapElement, {
           center: this.locationsDefault.mariana,
           scrollwheel: true,
           zoom: 18
         });
-        this.directionsService = new google.maps.DirectionsService;
-  		this.directionsDisplay = new google.maps.DirectionsRenderer;
-  		this.directionsDisplay.setMap(this.map);
+        this.initMarks ();
+        this.initRoutes();
 
-		/*
-			Marcas
-		*/
+	}
 
-		this.mapMarks = [];
+	/*
+		
+		Inicializa las marcas
 
+	*/
+	initMarks () {
 		// Mariana Sanz
 		this.setMarkOnMap (this.locationsDefault.mariana);
+		// Plaza de toros
+		//...
+	}
 
-
+	/*
+		Inicializa las rutas
+	*/
+	initRoutes () {
+		this.directionsService = new google.maps.DirectionsService;
+  		this.directionsDisplay = new google.maps.DirectionsRenderer;
+  		this.directionsDisplay.setMap(this.map);
 	}
 
 	/* 
@@ -106,7 +140,7 @@ class Mapa {
 			  			mapa.makeRuteToDefault();
 			  		}, 
 			  		function (error){
-			  			alert("Deves autorizar la localizacion");
+			  			alert("Debes autorizar la localizacion");
 			  			$("#mapLoadUser").remove(); // revisar!!!!!!!
 			  		});
 		}else{
