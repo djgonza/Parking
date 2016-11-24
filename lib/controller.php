@@ -53,7 +53,9 @@ class Controller {
         $directorio = opendir(self::DIR_SECCIONES);
         while ($archivo = readdir($directorio)) {
 
-            if($seccion == explode(".",$archivo)[0]){
+            $nameSeccionParse = explode(".",$archivo);
+
+            if($seccion == $nameSeccionParse[0]){
 
                 include self::DIR_SECCIONES.$archivo;
                 exit;
