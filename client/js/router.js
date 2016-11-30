@@ -8,7 +8,7 @@ class Router {
 
 		// Si no hay ninguna seccion actualmente redirigimos a inicio
 		var seccionActual = this.getActuallySeccion();
-		if (seccionActual == ""){
+		if (seccionActual == "" || seccionActual == "index.php"){
 			this.navegar("/inicio", "Inicio");
 			
 		// Si no navegamos a la seccion
@@ -77,13 +77,11 @@ class Router {
 
 		// Comprueba si existe la seccion requerida
 		if (this.secciones[seccionPedidaUrl]) {
-
 			// Muestra la seccion
 			this.showSeccion(seccionPedidaUrl);
 
 		// Si no existe
 		}else{
-
 			// Descarga la seccion
 			this.getSeccion(seccionPedidaUrl);
 
@@ -114,7 +112,7 @@ class Router {
 			cache: false,
 			type: "GET",
 			success: function(response) {
-				
+
 				// Crea el elemento
 				arraySecciones[seccion] = $(response);
 				// Añadimos la seccion al body

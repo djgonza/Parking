@@ -1,10 +1,26 @@
 <section id="reservas">
+	<h2>Reservas</h2>
+	<nav class="row jaround">
+		<button class="btnForm btnFormDefault">
+			<span class="btnFormSpan">Datos Personales</span>
+		</button>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpan">Tipo Vehiculo</span>
+		</button>
+		<button class="btnForm btnFormSucces">
+			<span class="btnFormSpan">Total Visitantes</span>
+		</button>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpan">Fecha Reserva</span>
+		</button>
+	</nav>
+
 	<div>
 		<input type="text" name="nombre" size=20 placeholder="Nombre"/>
 		<br /><br />
-		<input type="text" name="apellido1" size=20 placeholder="Apellido 1"/>
+		<input type="text" name="apellido1" size=20 placeholder="Primer Apellido"/>
 		<br /><br />
-		<input type="text" name="apellido2" size=20 placeholder="Apellido 2"/>
+		<input type="text" name="apellido2" size=20 placeholder="Segundo Apellido"/>
 		<br /><br />
 		<input type="text" name="dni" size=20 placeholder="DNI"/>
 		<br /><br />
@@ -13,7 +29,9 @@
 		<input type="text" name="telefono" size=20 placeholder="Telefono"/>
 		<br /><br />
 
-		<i class="material-icons">arrow_forward</i>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Siguiente</span>
+		</button>
 	</div>
 
 	<div>
@@ -29,8 +47,12 @@
 		<br /><br />
 		<input type="text" name="plazas" size=20 placeholder="Nº de plazas"/>
 		<br /><br />
-		<i class="material-icons">arrow_forward</i>
-		<i class="material-icons">arrow_back</i>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Anterior</span>
+		</button>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Siguiente</span>
+		</button>
 	</div>
 
 	<div>
@@ -42,8 +64,12 @@
 		<br />
 		<input type="text" name="nNiños" size=20 placeholder="¿Cuántos?"/>
 		<br /><br />
-		<i class="material-icons">arrow_forward</i>
-		<i class="material-icons">arrow_back</i>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Anterior</span>
+		</button>
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Siguiente</span>
+		</button>
 	</div>
 
 	<div>
@@ -58,6 +84,8 @@
 		<br />
 		<p>Hora salida</p>
 		<input type="time" name="horaSalida" />	
-		<i class="material-icons">arrow_back</i>	
+		<button class="btnForm btnFormActive">
+			<span class="btnFormSpanCenter">Anterior</span>
+		</button>
 	</div>
 </section>
