@@ -2,7 +2,7 @@
 
 class Eventos {
 
-	constructor (router, mapa) {
+	constructor (router, mapa, reservasController) {
 
 		/*
 
@@ -11,6 +11,7 @@ class Eventos {
 		*/
 		this.router = router;
 		this.mapa = mapa;
+		this.reservasController = reservasController;
 
 		/*
 
@@ -18,7 +19,8 @@ class Eventos {
 
 		*/
 		this.initEventNav (this.router, this);
-		this.initMapa (mapa, this);
+		this.initMapa (this.mapa, this);
+		this.initReservasController (this.reservasController, this);
 
 	}
 
@@ -55,6 +57,38 @@ class Eventos {
 		// Boton barra navegacion superior
 		$("#btnHeadNav").click (function () {
 			$("nav ul li").toggle();
+		});
+
+	}
+
+	/*
+		Inicia el controlador de reservas
+	*/
+	initReservasController (reservasController, eventos) {
+
+		$("main").on('DOMNodeInserted', "#reservas", function () {
+			//eliminamos el evento
+			$("main").unbind('DOMNodeInserted');
+			//ponemos el elemento
+			reservasController.setElement ($("#reservas")[0]);
+			//iniciamos los eventos
+			eventos.initReservasEvents(reservasController);
+		});
+
+	}
+
+	/*
+		
+		Init Eventos Reservas
+
+	*/
+	initReservasEvents (reservasController) {
+
+		$(".btnReservasNext").click (function () {
+			reservasController.setStatus(true);
+		});
+		$(".btnReservasBack").click (function () {
+			reservasController.setStatus(false);
 		});
 
 	}

@@ -5,7 +5,8 @@ $(function () {
 	*/
 	var router = new Router ();
 	var mapa = new Mapa();
-	var eventos = new Eventos (router, mapa);
+	var reservasController = new ReservasController();
+	var eventos = new Eventos (router, mapa, reservasController);
 
 	//new DataPicker($("#datePicker"));
 
