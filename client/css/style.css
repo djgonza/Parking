@@ -158,7 +158,14 @@ input {
 }
 .seguimiento p {
   position: absolute;
-  top: 6px;
+  top: 0px;
+  bottom: 0px;
+  left: 13%;
+  right: 13%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 .arriba {
   /*background: @naranja;*/
@@ -180,6 +187,27 @@ input {
   height: 50%;
   width: 100%;
 }
+.arriba2 {
+  /*background: @naranja;*/
+  -ms-transform: skewX(-40deg);
+  /* IE 9 */
+  -webkit-transform: skewX(-40deg);
+  /* Safari */
+  transform: skewX(-40deg);
+  height: 50%;
+  width: 100%;
+}
+.abajo2 {
+  /*background: @naranja;*/
+  -ms-transform: skewX(40deg);
+  /* IE 9 */
+  -webkit-transform: skewX(40deg);
+  /* Safari */
+  transform: skewX(40deg);
+  height: 50%;
+  width: 100%;
+}
+/* Colores btn Reserva.html*/
 .FormDefault {
   background: #797c80;
 }
@@ -450,10 +478,6 @@ input {
     text-align: center;
     position: relative;
   }
-  .seguimiento p {
-    position: absolute;
-    top: 6px;
-  }
   .arriba {
     /*background: @naranja;*/
     -ms-transform: skewX(40deg);
@@ -525,15 +549,6 @@ input {
   .seguimiento {
     height: 3em;
     width: 8em;
-  }
-  .seguimiento p {
-    width: 5em;
-    position: absolute;
-    top: 6px;
-    left: 22px;
-  }
-  .seguimiento .centrar {
-    top: 15px;
   }
   /*
 	*****************************************************************
