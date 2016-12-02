@@ -71,6 +71,9 @@ class Eventos {
 			$("main").unbind('DOMNodeInserted');
 			//ponemos el elemento
 			reservasController.setElement ($("#reservas")[0]);
+			reservasController.setSections ($("#reservas>div"));
+			reservasController.setStatusIcons ($("#reservas .seguimiento"));
+			reservasController.setButtons ($("#reservas #siguiente, #reservas #anterior"));
 			//iniciamos los eventos
 			eventos.initReservasEvents(reservasController);
 		});
@@ -84,11 +87,11 @@ class Eventos {
 	*/
 	initReservasEvents (reservasController) {
 
-		$(".btnReservasNext").click (function () {
-			reservasController.setStatus(true);
-		});
-		$(".btnReservasBack").click (function () {
+		$("#reservas #anterior p").click (function () {
 			reservasController.setStatus(false);
+		});
+		$("#reservas #siguiente p").click (function () {
+			reservasController.setStatus(true);
 		});
 
 	}

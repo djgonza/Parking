@@ -75,9 +75,16 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		cursor: pointer;
-
 	}
+
+	// Pointer solo para los botones de abajo
+	#reservas #siguiente p {
+		cursor: pointer;
+	}
+	#reservas #anterior p {
+		cursor: pointer;
+	}
+
 .arriba{
 	/*background: @naranja;*/
 	-ms-transform: skewX(40deg); /* IE 9 */
@@ -114,11 +121,11 @@
 
  /* Colores btn Reserva.html*/
 .FormDefault{
-	background: @gris;
+	background: @grisOscuro;
 }
 .FormActive{
 	background: @naranja;
 }
-.FormSucces{
+.FormSuccess{
 	background: @gris;
 }

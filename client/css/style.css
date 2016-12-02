@@ -165,6 +165,11 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#reservas #siguiente p {
+  cursor: pointer;
+}
+#reservas #anterior p {
   cursor: pointer;
 }
 .arriba {
@@ -209,12 +214,12 @@ input {
 }
 /* Colores btn Reserva.html*/
 .FormDefault {
-  background: #797c80;
+  background: #272727;
 }
 .FormActive {
   background: #e57e1f;
 }
-.FormSucces {
+.FormSuccess {
   background: #797c80;
 }
 .btnForm {
