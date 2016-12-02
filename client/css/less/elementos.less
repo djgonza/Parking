@@ -1,8 +1,23 @@
 #btnHeadNav {
-	display: none;
+	display: block;
 	font-size: 3em;
 	cursor: pointer;
 }
+
+#servicios h3, #tarifas h3{
+	text-align: center;
+}
+
+#servicios, #ubicacion, #tarifas, #reservas{
+	margin-top: 1em;
+}
+	#servicios article{
+		margin-top: 2em;
+		margin-bottom: 1em;
+	}
+	#servicios article div div{
+		margin-top: 2em;
+	}
 
 #ubicacion {
 	position: absolute !important;
@@ -20,23 +35,101 @@
 	    bottom: 35px;
 	    left: 25px;
 	    border-radius: 50%;
-	    border: 2px solid rgba(229, 126, 31, 1.0);
+	    border: 2px solid @naranja;
 	    font-size: 3em;
-	    color: rgba(229, 126, 31, 1.0);
+	    color: @naranja;
 	    background: rgba(255, 255, 255, 0.8);
 	}
 
 	#ubicacionBtnNavegar:hover {
 		cursor: pointer;
 	}
+	
+#tarifas{
 
-	#tarifas {
-
+}
+	#tarifas h2~p{
+		color: rgba(0,0,0,0.5);
+		font-weight: bold;
+		text-align: center;
+	}
+	#tarifas section article{
+		text-align: center;
+		background: @blanco;
+		margin: 2em 0;
+		padding: 1em;
+		border: 4px solid @naranja;
+		border-radius: 0.2em;
+		box-shadow: -5px 5px 8px #333333;
+		box-sizing: border-box;
+		position: relative;
+	}
+		#tarifas section article:nth-child(2n+1){
+			-ms-transform: rotate(-2deg); /* IE 9 */
+		    -webkit-transform: rotate(-2deg); /* Safari */
+		    transform: rotate(-2deg)
+		}
+		#tarifas section article:nth-child(4){
+			-ms-transform: rotate(2deg); /* IE 9 */
+		    -webkit-transform: rotate(2deg); /* Safari */
+		    transform: rotate(2deg)
+		}
+		#tarifas section article .cero{
+			-ms-transform: rotate(2deg); /* IE 9 */
+		    -webkit-transform: rotate(2deg); /* Safari */
+		    transform: rotate(2deg)
+		}
+		#tarifas section article .cero2{
+			-ms-transform: rotate(-2deg); /* IE 9 */
+		    -webkit-transform: rotate(-2deg); /* Safari */
+		    transform: rotate(-2deg)
+		}
+		#tarifas section article h3{
+			/*background: rgba(255,128,0,1);
+			background: -moz-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,128,0,1)), color-stop(100%, rgba(255,163,72,1)));
+			background: -webkit-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -o-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -ms-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: linear-gradient(to bottom, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8000', endColorstr='#ffa348', GradientType=0 );
+			color: @blanco;*/
+			padding: 0.2em;
+			margin: 0 0 2em 0;
+			border-radius: 0.2em;
+			/*box-shadow: 2px 2px 8px #888888;
+			position: absolute;
+		    top: -14px;
+		    left: -15px;*/
+		}
+		#tarifas section article i{
+			font-size: 7em;
+			vertical-align: bottom;
+			color: @naranja;
+		}
+		#tarifas section article button{
+			background: @naranja;
+			color: @blanco;
+			padding: 0.6em 1em;
+			margin: 2em 0;
+			border-radius: 0.2em;
+			border: 0;
+			box-shadow: 2px 2px 8px #888888;
+			cursor: pointer;
+			/*position: absolute;
+		    bottom: -25px;
+		    right: -15px;*/
+		}
+		#tarifas section article button:hover{
+			background: rgba(80, 80, 80, 1);
+		}
+	#tarifas p{
+		margin: 1em 0 1em 0;
 	}
 
 	.iconsServicios{
 		font-size: 3em;
-		color: rgba(229, 126, 31, 1.0);
+		color: @naranja;
 	}
 
 	.iconsServicios~p{
@@ -44,26 +137,22 @@
 		text-align: center;
 		color: rgba(0, 0, 0, 0.5);
 	}
-	#servicios h3{
-		text-align: center;
-	}
 
 
 #reservas nav {
-	width: 65%;
+	width: 100%;
     margin: 0 auto;
 }
-
-#reservas div {
-	width: 60%;
-	margin: 1em auto;
-	border: 4px solid rgba(229, 126, 31, 1.0);
-	padding: 1em;
-	box-sizing: border-box;
-	border-radius: 1em;
-	transform: skewx(3deg);
-	background-color: white;
-}
+	#reservas>div {
+		width: 100%;
+		margin: 1em auto;
+		border: 4px solid @naranja;
+		padding: 1em;
+		box-sizing: border-box;
+		border-radius: 1em;
+		transform: skewx(3deg);
+		background-color: white;
+	}
 
 #mapLoadUser {
 	animation-name: loadRotate;

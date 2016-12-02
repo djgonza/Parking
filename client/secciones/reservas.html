@@ -1,7 +1,7 @@
 <section id="reservas">
 	<h2>Reservas</h2>
-	<nav class="row jaround">
-		<button class="btnForm btnFormActive">
+	<nav class="row jaround-xs">
+		<!--<button class="btnForm btnFormActive">
 			<span class="btnFormSpan">Datos Personales</span>
 		</button>
 		<button class="btnForm btnFormSucces">
@@ -15,7 +15,32 @@
 		</button>
 		<button class="btnForm btnFormSucces">
 			<span class="btnFormSpanCenter">Pago</span>
-		</button>
+		</button>-->
+		<div class="seguimiento">
+			<div class="arriba FormActive"></div>
+			<div class="abajo FormActive"></div>
+			<p>Datos Personales</p>
+		</div>
+		<div class="seguimiento">
+			<div class="arriba FormDefault"></div>
+			<div class="abajo FormDefault"></div>
+			<p>Tipo Vehiculo</p>
+		</div>
+		<div class="seguimiento">
+			<div class="arriba FormDefault"></div>
+			<div class="abajo FormDefault"></div>
+			<p>Total Visitantes</p>
+		</div>
+		<div class="seguimiento">
+			<div class="arriba FormDefault"></div>
+			<div class="abajo FormDefault"></div>
+			<p>Fecha Reserva</p>
+		</div>
+		<div class="seguimiento">
+			<div class="arriba FormDefault"></div>
+			<div class="abajo FormDefault"></div>
+			<p class="centrar">Pago</p>
+		</div>
 	</nav>
 
 	<div>
@@ -28,9 +53,6 @@
 		<input type="text" name="dni" size=20 placeholder="DNI"/>
 		<input type="text" name="correoElectronico" size=20 placeholder="Correo electronico"/>
 		<input type="text" name="telefono" size=20 placeholder="Telefono"/>
-		<button class="btnForm btnFormActive btnFormRigth btnReservasNext">
-			<span class="btnFormSpanCenter">Siguiente</span>
-		</button>
 	</div>
 
 	<div style="display: none;">
@@ -43,12 +65,6 @@
 		</select>
 		<input type="text" name="matricula" size=20 placeholder="Matrícula"/>
 		<input type="text" name="plazas" size=20 placeholder="Nº de plazas"/>
-		<button class="btnForm btnFormActive btnFormLeft btnReservasBack">
-			<span class="btnFormSpanCenter">Anterior</span>
-		</button>
-		<button class="btnForm btnFormActive btnFormRigth btnReservasNext">
-			<span class="btnFormSpanCenter">Siguiente</span>
-		</button>
 	</div>
 
 	<div style="display: none;">
@@ -57,12 +73,6 @@
 		<input type="radio" name="niños" value="Si"/>Si <br />
 		<input type="radio" name="niños" value="No" checked="checked"/>No <br />
 		<input type="text" name="nNiños" size=20 placeholder="¿Cuántos?"/>
-		<button class="btnForm btnFormActive btnFormLeft btnReservasBack">
-			<span class="btnFormSpanCenter">Anterior</span>
-		</button>
-		<button class="btnForm btnFormActive btnFormRigth btnReservasNext">
-			<span class="btnFormSpanCenter">Siguiente</span>
-		</button>
 	</div>
 
 	<div style="display: none;">
@@ -73,18 +83,23 @@
 		<p>Fecha salida</p>
 		<input type="date" name="fechaSalida" />
 		<p>Hora salida</p>
-		<input type="time" name="horaSalida" />	
-		<button class="btnForm btnFormActive btnFormLeft btnReservasBack">
-			<span class="btnFormSpanCenter">Anterior</span>
-		</button>
-		<button class="btnForm btnFormActive btnFormRigth btnReservasNext">
-			<span class="btnFormSpanCenter">Siguiente</span>
-		</button>
+		<input type="time" name="horaSalida" />
 	</div>
 	<div style="display: none;">
 		Pagos
-		<button class="btnForm btnFormActive btnFormLeft btnReservasBack">
-			<span class="btnFormSpanCenter">Anterior</span>
-		</button>
 	</div>
+
+<!-- Botones siguiente y anterior -->
+	<nav class="row jbetween-xs">
+		<div id="" class="seguimiento">
+			<div class="arriba2 FormDefault"></div>
+			<div class="abajo2 FormDefault"></div>
+			<p class="centrar">Anterior</p>
+		</div>
+		<div id="" class="seguimiento">
+			<div class="arriba FormActive"></div>
+			<div class="abajo FormActive"></div>
+			<p class="centrar">Siguiente</p>
+		</div>
+	</nav>
 </section>

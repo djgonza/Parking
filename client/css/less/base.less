@@ -1,56 +1,66 @@
 body{
-	background: rgba(238, 238, 238, 1.0);
+	background: @grisClaro;
 }
 
 header{
 	background: rgba(255, 255, 255, 0.8);
+    /*position: fixed;*/
     width: 100%;
     z-index: 100;
 }
-header img{
-	height: 4.5em;
-}
+	header img{
+		height: 4.5em;
+	}
+	header nav ul {
+		display: block !important;
+	    position: absolute;
+	    width: 50%;
+	    margin: 0 -25%;
+	    top: 5em;
+	    background: @blanco;
+	    border: 2px solid @naranja;
+	    z-index: 10000;
+	}
+	header nav ul li{
+		color: @grisOscuro;
+		padding: 1em;
+		border-bottom: 4px solid rgba(0, 0, 0, 0);
+		font-size: 1.2em;
+	    cursor: pointer;
+	}
+	header ul li img {
+		width: 32px;
+	    height: 32px;
+	}
+	header nav ul li{
+		display: none;
+	}
+	header nav ul li:hover, nav ul i:hover{
+		color: @naranja;
+		border-bottom: 4px solid @naranja;	
+	}
+	header nav ul li:active, nav ul i:active{
+		color: @naranja;
+	}
 
-header ul li img {
-	width: 32px;
-    height: 32px;
-}
-header nav ul li{
-	list-style: none;
-	text-decoration: none;
-	color: rgba(39, 39, 39, 1.0);
-	padding: 2em 1em 2em 1em;
-	border-top: 4px solid rgba(0, 0, 0, 0);
-	font-size: 1.2em;
-    cursor: pointer;
-}
-header nav ul li:hover, nav ul i:hover{
-	color: rgba(229, 126, 31, 1.0);
-	border-top: 4px solid rgba(229, 126, 31, 1.0);	
-}
-header nav ul li:active, nav ul i:active{
-	color: rgba(229, 126, 31, 1.0);
-}
 main {
 	position: relative;
 	margin: 0 auto;
 	max-width: 1200px;
+	width: 90%;
 }
-h3{
-	color: rgba(0, 0, 0, 0.5);
-}
-h2{
-	text-align: center;
-	padding: 1em 0;
-	color: #8a8b8c;
-}
+	h3{
+		color: rgba(0, 0, 0, 0.5);
+	}
+	h1, h2{
+		text-align: center;
+	}
+
 footer{
-	background: rgba(80, 80, 80, 1.0);
-	color: rgba(255, 255, 255, 1.0);
+	background: @grisOscuro;
+	color: @blanco;
 	padding: 1em 0 1em 0;
-	bottom: 0;
-    position: static;
-    width: 100%;
+	text-align: center;
 }
 
 input {
@@ -59,6 +69,6 @@ input {
     font-size: 1em;
     border-radius: 1em;
     width: 50%;
-    background: rgba(238, 238, 238, 1.0);
+    background: @grisClaro;
     margin-bottom: 1em;
 }

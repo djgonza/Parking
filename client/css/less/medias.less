@@ -1,25 +1,127 @@
-@media (max-width: 768px) {
-	nav ul {
-		display: block !important;
-	    position: absolute;
-	    width: 50%;
-	    margin: 0 -25%;
-	    top: 5em;
-	    background: rgba(255, 255, 255, 0.8);
+@media (min-width: 48em) {
+	header nav ul{
+		position: relative;
+		top: 0;
+		width: 100%;
+	    margin: 0 ;
+	    background: none;
+	    border: none;
 	}
-	nav ul li {
-		display: none;
+	header nav ul li {
+		display: inline-block !important;
+		border-top: 4px solid rgba(0, 0, 0, 0);
+		border-bottom: none;
+	}
+	header nav ul li:hover, nav ul i:hover{
+		border-top: 4px solid @naranja;
+		border-bottom: none;
 	}
 	#btnHeadNav {
-		display: block !important;
+		display: none !important;
 	}
-	.col-sd-5{
-		width: 41.6666667%;
+
+	/*
+	reservas.html
+	*/
+	.seguimiento{
+		height: 3em;
+		width: 7em;
+		text-align: center;
+		position: relative;
 	}
-	.col-sd-4{
+		.seguimiento p{
+			position: absolute;
+			top: 6px;
+		}
+
+	.arriba{
+		/*background: @naranja;*/
+		-ms-transform: skewX(40deg); /* IE 9 */
+	    -webkit-transform: skewX(40deg); /* Safari */
+	    transform: skewX(40deg);
+	    height: 50%;
+	    width: 100%;
+	}
+	.abajo{
+		/*background: @naranja;*/
+		-ms-transform: skewX(-40deg); /* IE 9 */
+	    -webkit-transform: skewX(-40deg); /* Safari */
+	    transform: skewX(-40deg);
+	    height: 50%;
+	    width: 100%;
+	}
+	.arriba2{
+		/*background: @naranja;*/
+		-ms-transform: skewX(-40deg); /* IE 9 */
+	    -webkit-transform: skewX(-40deg); /* Safari */
+	    transform: skewX(-40deg);
+	    height: 50%;
+	    width: 100%;
+	}
+	.abajo2{
+		/*background: @naranja;*/
+		-ms-transform: skewX(40deg); /* IE 9 */
+	    -webkit-transform: skewX(40deg); /* Safari */
+	    transform: skewX(40deg);
+	    height: 50%;
+	    width: 100%;
+	}
+
+	/*
+	*****************************************************************
+	************************* Clases comunes ************************
+	*****************************************************************
+	*/
+	.col-sm-2{
+		width: 16.6666667%;
+	}
+	.col-sm-3{
+		width: 25%;
+	}
+	.col-sm-4{
 		width: 33.3333333%;
 	}
-	.col-sd-3{
+	.col-sm-5{
+		width: 41.6666667%;
+	}
+	.dfilas-sm{
+		flex-direction: row;
+	}
+	.filas-sm{
+		flex-wrap: wrap;
+	}
+}
+
+@media (min-width: 75em){
+
+	/*
+	reservas.html
+	*/
+	.seguimiento{
+		height: 3em;
+		width: 8em;
+	}
+		.seguimiento p{
+			width: 5em;
+			position: absolute;
+			top: 6px;
+			left: 22px;
+		}
+		.seguimiento .centrar{
+			top: 15px;
+		}
+	/*
+	*****************************************************************
+	************************* Clases comunes ************************
+	*****************************************************************
+	*/
+	.col-lg-2{
+		width: 16.6666667%;
+	}
+	.col-lg-3{
 		width: 25%;
+	}
+	.col-lg-4{
+		width: 33.3333333%;
 	}
 }

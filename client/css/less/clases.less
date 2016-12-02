@@ -1,16 +1,98 @@
 .row{
-	display: flex;
 	align-items: center;
+	display: flex;
 }
-.jaround{
+.col-xs-1{
+	width: 8.33333333%;
+}
+.col-xs-2{
+	width: 16.6666667%;
+}
+.col-xs-3{
+	width: 25%;
+}
+.col-xs-4{
+	width: 33.3333333%;
+}
+.col-xs-5{
+	width: 41.6666667%;
+}
+.col-xs-6{
+	width: 50%;
+}
+.col-xs-10{
+	width: 83.3333333%;
+}
+.col-xs-11{
+	width: 91.6666667%;
+}
+.col-xs-12{
+	width: 100%;
+}
+.dcolumnas-xs{
+	flex-direction: column;
+}
+.dfilas-xs{
+	flex-direction: row;
+}
+.jaround-xs{
 	justify-content: space-around;
 }
-.jbetween{
+.jbetween-xs{
 	justify-content: space-between;
 }
-.jcenter{
+.jcenter-xs{
 	justify-content: center;
 }
-.filas{
+.filas-xs{
 	flex-wrap: wrap;
+}
+.fstart-xs{
+	align-items: flex-start;
+}
+.fend-xs{
+	align-items: flex-end;
+}
+
+
+/*
+	reservas.html
+*/
+
+.seguimiento{
+	height: 3em;
+	width: 6.5em;
+	text-align: center;
+	position: relative;
+	color: @blanco;
+}
+	.seguimiento p{
+		position: absolute;
+		top: 6px;
+	}
+.arriba{
+	/*background: @naranja;*/
+	-ms-transform: skewX(40deg); /* IE 9 */
+    -webkit-transform: skewX(40deg); /* Safari */
+    transform: skewX(40deg);
+    height: 50%;
+    width: 100%;
+}
+.abajo{
+	/*background: @naranja;*/
+	-ms-transform: skewX(-40deg); /* IE 9 */
+    -webkit-transform: skewX(-40deg); /* Safari */
+    transform: skewX(-40deg);
+    height: 50%;
+    width: 100%;
+}
+ /* Colores btn Reserva.html*/
+.FormDefault{
+	background: @gris;
+}
+.FormActive{
+	background: @naranja;
+}
+.FormSucces{
+	background: @gris;
 }
