@@ -4,6 +4,11 @@ class Validador {
 
 	constructor () {
 
+		this.data = {
+			nombre: ""
+
+		}
+
 		/* 
 			Campos
 		*/
@@ -53,20 +58,34 @@ class Validador {
 	}
 
 
-	validarDatosPersonales () {
-		
-	}
+	validar (element) {
 
-	validarVehiculo () {
-		
-	}
+		element = $(element);
+		var valido = true;
 
-	validarPersonas () {
-		
-	}
+		// Comprueba que el elemento tiene algo si es requerido
+		if(element.attr("required") && element.val().length == 0){
 
-	validarHorarios () {
-		
+			var mensaje = $("<validacion></validacion>").html("Campo requerido");
+			console.log(mensaje[0]);
+			element[0].after($("<validacion>Campo requerido</validacion>"));
+			valido = false;
+
+		// Comprovamos las restricciones
+		}/*else if(element.attr("restrict")){
+
+			element.after("<validacion>El campo es requerido</validacion>");
+			valido = false;
+
+		}*/
+
+		// Eliminamos los mensajes
+		if (valido) {
+			$("validacion").remove();
+		}
+
+		return valido;
+
 	}
 
 }

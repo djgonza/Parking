@@ -1,21 +1,6 @@
 <section id="reservas">
 	<h2>Reservas</h2>
 	<nav class="row jaround-xs">
-		<!--<button class="btnForm btnFormActive">
-			<span class="btnFormSpan">Datos Personales</span>
-		</button>
-		<button class="btnForm btnFormSucces">
-			<span class="btnFormSpan">Tipo Vehiculo</span>
-		</button>
-		<button class="btnForm btnFormSucces">
-			<span class="btnFormSpan">Total Visitantes</span>
-		</button>
-		<button class="btnForm btnFormSucces">
-			<span class="btnFormSpan">Fecha Reserva</span>
-		</button>
-		<button class="btnForm btnFormSucces">
-			<span class="btnFormSpanCenter">Pago</span>
-		</button>-->
 		<div class="seguimiento">
 			<div class="arriba FormActive"></div>
 			<div class="abajo FormActive"></div>
@@ -25,6 +10,11 @@
 			<div class="arriba FormDefault"></div>
 			<div class="abajo FormDefault"></div>
 			<p>Tipo Vehiculo</p>
+		</div>
+		<div class="seguimiento">
+			<div class="arriba FormDefault"></div>
+			<div class="abajo FormDefault"></div>
+			<p>Seleccionar Plaza</p>
 		</div>
 		<div class="seguimiento">
 			<div class="arriba FormDefault"></div>
@@ -44,15 +34,41 @@
 	</nav>
 
 	<div>
-		<input type="text" name="nombre" size=20 placeholder="Nombre"/>
-		<validacion style="position: fixed;width: 100px;">V</validacion>
-		<input type="text" name="apellido1" size=20 placeholder="Primer Apellido"/>
-		<validacion style="position: fixed;width: 100px;">V</validacion>
-		<input type="text" name="apellido2" size=20 placeholder="Segundo Apellido"/>
-		<validacion style="position: fixed;width: 100px;">V</validacion>
-		<input type="text" name="dni" size=20 placeholder="DNI"/>
-		<input type="text" name="correoElectronico" size=20 placeholder="Correo electronico"/>
-		<input type="text" name="telefono" size=20 placeholder="Telefono"/>
+		<input 
+			type="text" 
+			name="nombre" 
+			required 
+			restrict="l20" 
+			placeholder="Nombre"
+		/>
+		<input 
+			type="text" 
+			name="apllUno"
+			required
+			placeholder="Primer Apellido"
+		/>
+		<input 
+			type="text" 
+			name="apllDos"
+			required
+			placeholder="Segundo Apellido"
+		/>
+		<input 
+			type="text" 
+			name="dni"
+			required
+			placeholder="DNI"
+		/>
+		<input 
+			type="text" 
+			name="mail" 
+			placeholder="Correo electronico"
+		/>
+		<input 
+			type="text" 
+			name="tlf"
+			placeholder="Telefono"
+		/>
 	</div>
 
 	<div style="display: none;">
@@ -63,16 +79,20 @@
 			<option value="furgoneta">Furgoneta</option>
 			<option value="autocaravana">Autocaravana</option>
 		</select>
-		<input type="text" name="matricula" size=20 placeholder="Matrícula"/>
-		<input type="text" name="plazas" size=20 placeholder="Nº de plazas"/>
+		<input type="text" name="matricula" placeholder="Matrícula"/>
+		<input type="text" name="plazas" placeholder="Nº de plazas"/>
 	</div>
 
 	<div style="display: none;">
-		<input type="text" name="personas" size=20 placeholder="Nº total de personas"/>
+		seleccionar plaza
+	</div>
+
+	<div style="display: none;">
+		<input type="text" name="personas" placeholder="Nº total de personas"/>
 		<p>¿Viaja con menores de 12 años?</p>
 		<input type="radio" name="niños" value="Si"/>Si <br />
 		<input type="radio" name="niños" value="No" checked="checked"/>No <br />
-		<input type="text" name="nNiños" size=20 placeholder="¿Cuántos?"/>
+		<input type="text" name="nNiños" placeholder="¿Cuántos?"/>
 	</div>
 
 	<div style="display: none;">

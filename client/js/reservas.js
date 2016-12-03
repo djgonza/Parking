@@ -1,6 +1,6 @@
 "use strict";
 
-class ReservasController {
+class Reservas {
 
 	constructor () {
 
@@ -14,6 +14,8 @@ class ReservasController {
 		this.buttons;
 		// Punto del formulario
 		this.status = 0;
+		// Validador
+		this.validador = new Validador();
 
 	}
 
@@ -39,20 +41,41 @@ class ReservasController {
 
 	setStatus (status) { //true ++, false --
 
-		//console.log(this.element, this.sections, this.statusIcons);
+		if(this.validar()){
 
-		if (status) {
-			this.status++;
-		}else{
-			this.status--;
+			if (status) {
+				this.status++;
+			}else{
+				this.status--;
+			}
+
+			this.switchIconsNav ();
+			this.switchBottons ();
+			this.switchSections ();
+
 		}
-
-		this.switchIconsNav ();
-		this.switchBottons ();
-		this.switchSections ();
 
 	}
 
+
+	/*
+		
+		Valida el form
+
+	*/
+	validar () {
+
+		var reservas = this;
+
+		$(this.sections[this.status]).children("input").each(function (i, element) {
+
+			reservas.validador.validar(element);
+
+		});
+
+		return false;
+
+	}
 
 	/*
 		
@@ -64,32 +87,6 @@ class ReservasController {
 		$(this.sections[this.status - 1]).hide();
 		$(this.sections[this.status]).show();
 		$(this.sections[this.status + 1]).hide();
-
-		/*switch (this.status) {
-
-			case 0:
-
-				this.sections[1].hide();
-
-			break;
-			case 1:
-
-				this.buttons.anterior.show();
-
-			break;
-			case this.sections.length - 2:
-
-				this.buttons.siguiente.show();
-
-			break;
-			case this.sections.length - 1:
-
-				this.buttons.siguiente.hide();
-
-			break;
-
-		}*/
-
 
 	}
 

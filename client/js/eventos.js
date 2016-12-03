@@ -2,7 +2,7 @@
 
 class Eventos {
 
-	constructor (router, mapa, reservasController) {
+	constructor (router, mapa, reservas) {
 
 		/*
 
@@ -11,7 +11,7 @@ class Eventos {
 		*/
 		this.router = router;
 		this.mapa = mapa;
-		this.reservasController = reservasController;
+		this.reservas = reservas;
 
 		/*
 
@@ -20,7 +20,7 @@ class Eventos {
 		*/
 		this.initEventNav (this.router, this);
 		this.initMapa (this.mapa, this);
-		this.initReservasController (this.reservasController, this);
+		this.initReservas (this.reservas, this);
 
 	}
 
@@ -64,18 +64,18 @@ class Eventos {
 	/*
 		Inicia el controlador de reservas
 	*/
-	initReservasController (reservasController, eventos) {
+	initReservas (reservas, eventos) {
 
 		$("main").on('DOMNodeInserted', "#reservas", function () {
 			//eliminamos el evento
 			$("main").unbind('DOMNodeInserted');
 			//ponemos el elemento
-			reservasController.setElement ($("#reservas")[0]);
-			reservasController.setSections ($("#reservas>div"));
-			reservasController.setStatusIcons ($("#reservas .seguimiento"));
-			reservasController.setButtons ($("#reservas #siguiente, #reservas #anterior"));
+			reservas.setElement ($("#reservas")[0]);
+			reservas.setSections ($("#reservas>div"));
+			reservas.setStatusIcons ($("#reservas .seguimiento"));
+			reservas.setButtons ($("#reservas #siguiente, #reservas #anterior"));
 			//iniciamos los eventos
-			eventos.initReservasEvents(reservasController);
+			eventos.initReservasEvents(reservas);
 		});
 
 	}
@@ -85,13 +85,13 @@ class Eventos {
 		Init Eventos Reservas
 
 	*/
-	initReservasEvents (reservasController) {
+	initReservasEvents (reservas) {
 
 		$("#reservas #anterior p").click (function () {
-			reservasController.setStatus(false);
+			reservas.setStatus(false);
 		});
 		$("#reservas #siguiente p").click (function () {
-			reservasController.setStatus(true);
+			reservas.setStatus(true);
 		});
 
 	}
