@@ -4,87 +4,143 @@ class Validador {
 
 	constructor () {
 
-		this.data = {
-			nombre: ""
-
-		}
-
-		/* 
-			Campos
-		*/
-		this.datosPersonales = {
-			nombre: "",
-			apellidoUno: "",
-			apellidoDos: "",
-			dni: {
-				numero: 0,
-				letra: ""
-			},
-			email: "",
-			telefono: 0
-		}
-
-		this.vehiculo = {
-			tipo: "",
-			matricula: "",
-			plaza: ""
-		}
-
-		this.personas = {
-			total: 0,
-			ninos: false,
-			nNinos: 0
-		}
-
-		this.horarios = {
-			fechaLlegada: {
-				seg: 0,
-				min: 0,
-				hor: 0,
-				dia: 0,
-				mes: 0,
-				año: 0
-			},
-			fechaSalida: {
-				seg: 0,
-				min: 0,
-				hor: 0,
-				dia: 0,
-				mes: 0,
-				año: 0
-			}
-		}
+		this.data = new Array();
 
 	}
 
+	/*	
 
+		Añade las diferentes secciones al validador
+
+	*/
+	setSection (i, element) {
+
+		var validador = this;
+		element = $(element);
+
+		var data = {};
+
+		element.children().each(function (i, element) {
+
+			var element = $(element);
+			var type = element.prop('nodeName');
+
+			if (type == "INPUT" || type == "SELECT"){
+
+				var dataObj = data[$(element).attr("name")] = {
+					"element": element,
+					"status": false
+				};
+				// Comprovamos el requerimiento del campo
+				if(!element.attr("required")){
+					data[$(element).attr("name")].status = true;
+				}
+				validador.initValidationEvent(element, dataObj);
+				
+			}
+			
+		});
+
+		this.data[i] = data;
+
+	}
+
+	/*
+		
+		Devuelve el stado de validacion de la seccion
+
+	*/
+	getSectionStatus (section) {
+
+		var status = true;
+
+		$.each(this.data[section], function (i, element) {
+
+			if (!element.status) {
+				status = false;
+				element.element.focus();
+				return false;
+			}
+
+		});
+
+		return status;
+		
+	}
+
+
+	/*
+	
+		Inicia los eventos de validacion del elemento
+
+	*/
+	initValidationEvent (element, dataObj) {
+
+		var validador = this;
+
+		element.on(
+			"change paste keyup focusout focusin", 
+			function () {
+
+				// asignamos el status
+				if (!validador.validar (dataObj.element)) {
+					// Mostramos el mensaje
+					$(dataObj.element.next("validacion")[0]).show();
+					dataObj.status = false;
+				}else{
+					// Ocultamos el mensaje
+					$(dataObj.element.next("validacion")[0]).hide();
+					dataObj.status = true;
+				}
+				
+
+			}
+			
+		);
+
+		element.on("focusout", function () {
+			$(dataObj.element.next("validacion")[0]).hide();
+		});
+
+	}
+
+	/*
+		
+		Valida un elemento en funcion de sus reglas
+
+	*/
 	validar (element) {
 
 		element = $(element);
-		var valido = true;
 
-		// Comprueba que el elemento tiene algo si es requerido
-		if(element.attr("required") && element.val().length == 0){
+		switch (element.prop('nodeName')) {
 
-			var mensaje = $("<validacion></validacion>").html("Campo requerido");
-			console.log(mensaje[0]);
-			element[0].after($("<validacion>Campo requerido</validacion>"));
-			valido = false;
+			case "INPUT": 
+				
+				// El elemento es requerido
+				if (element.attr("required")) {
 
-		// Comprovamos las restricciones
-		}/*else if(element.attr("restrict")){
+					// Longitud minima
+					if (element.attr("min") && element.val().length < element.attr("min")){
+						return false;
+					}
+					// Longitu maxima
+					if (element.attr("max") && element.val().length > element.attr("max")){
+						return false;
+					}
 
-			element.after("<validacion>El campo es requerido</validacion>");
-			valido = false;
+				}
 
-		}*/
+				return true;
 
-		// Eliminamos los mensajes
-		if (valido) {
-			$("validacion").remove();
+			break;
+			case "SELECT": 
+				
+				return true;
+
+			break;
+
 		}
-
-		return valido;
 
 	}
 

@@ -24,7 +24,20 @@ class Reservas {
 	}
 
 	setSections (elements) {
-		this.sections = elements;
+
+		var reservas = this;
+		reservas.sections = elements;
+
+		// Asigna los campos al validador
+		
+
+		// Recorre los elementos y asigna sus eventos
+		$(elements).each(function (i, element) {
+
+			reservas.validador.setSection(i, element);
+
+		});
+		
 	}
 
 	setStatusIcons (elements) {
@@ -41,39 +54,19 @@ class Reservas {
 
 	setStatus (status) { //true ++, false --
 
-		if(this.validar()){
-
-			if (status) {
+		// Comprueba si todos los campos de esta seccion son correctos
+		if (status) {
+			if(this.validador.getSectionStatus (this.status)){
 				this.status++;
-			}else{
-				this.status--;
 			}
-
-			this.switchIconsNav ();
-			this.switchBottons ();
-			this.switchSections ();
-
+		}else{
+			this.status--;
 		}
 
-	}
+		this.switchIconsNav ();
+		this.switchBottons ();
+		this.switchSections ();
 
-
-	/*
-		
-		Valida el form
-
-	*/
-	validar () {
-
-		var reservas = this;
-
-		$(this.sections[this.status]).children("input").each(function (i, element) {
-
-			reservas.validador.validar(element);
-
-		});
-
-		return false;
 
 	}
 
