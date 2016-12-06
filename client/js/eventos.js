@@ -71,7 +71,7 @@ class Eventos {
 			$("main").unbind('DOMNodeInserted');
 			//ponemos el elemento
 			reservas.setElement ($("#reservas")[0]);
-			reservas.setSections ($("#reservas>div"));
+			reservas.setSections ($("#reservas>article"));
 			reservas.setStatusIcons ($("#reservas .seguimiento"));
 			reservas.setButtons ($("#reservas #siguiente, #reservas #anterior"));
 			//iniciamos los eventos

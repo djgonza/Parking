@@ -7,15 +7,13 @@ class Reservas {
 		// Contenedor
 		this.element;
 		// Pasos del formulario
-		this.sections;
+		this.sections = new Array();
 		// Iconos superiores nav
 		this.statusIcons;
 		// Botones alante atras
 		this.buttons;
 		// Punto del formulario
 		this.status = 0;
-		// Validador
-		this.validador = new Validador();
 
 	}
 
@@ -26,18 +24,28 @@ class Reservas {
 	setSections (elements) {
 
 		var reservas = this;
-		reservas.sections = elements;
-
-		// Asigna los campos al validador
 		
-
 		// Recorre los elementos y asigna sus eventos
 		$(elements).each(function (i, element) {
 
-			reservas.validador.setSection(i, element);
+			// Guardamos la seccion
+			reservas.sections[i] = {
+				"element": element,
+				"childrens": reservas.setSectionChildrens (element)
+			};
 
 		});
 		
+	}
+
+	setSectionChildrens (element) {
+
+		var data =  new Array();
+		$(element).children().each (function (i, element) {
+			data.push(new Validador(element));
+		});
+		return data;
+
 	}
 
 	setStatusIcons (elements) {
@@ -56,7 +64,7 @@ class Reservas {
 
 		// Comprueba si todos los campos de esta seccion son correctos
 		if (status) {
-			if(this.validador.getSectionStatus (this.status)){
+			if(this.getSectionStatus (this.status)){
 				this.status++;
 			}
 		}else{
@@ -77,9 +85,13 @@ class Reservas {
 	*/
 	switchSections () {
 
-		$(this.sections[this.status - 1]).hide();
-		$(this.sections[this.status]).show();
-		$(this.sections[this.status + 1]).hide();
+		if(this.status > 0) {
+			$(this.sections[this.status - 1].element).hide();
+		}
+		$(this.sections[this.status].element).show();
+		if(this.status < this.sections.length){
+			$(this.sections[this.status + 1].element).hide();
+		}
 
 	}
 
@@ -175,5 +187,25 @@ class Reservas {
 			.addClass("FormSuccess");
 
 	}
+
+	getSectionStatus (section) {
+
+		var status = true;
+
+		$.each (this.sections[section].childrens, function (i, element) {
+			
+			if(!element.status){
+				element.setFocus();
+				status = false;
+				return false;
+			}
+
+		});
+
+		return status;
+
+	}
+
+
 
 }

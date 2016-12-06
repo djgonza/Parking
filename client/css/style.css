@@ -87,9 +87,9 @@ input {
   padding: 1em;
   font-size: 1em;
   border-radius: 1em;
-  width: 96%;
   background: #eeeeee;
-  margin-bottom: 1em;
+  box-sizing: border-box;
+  width: 100%;
 }
 validacion {
   position: relative;
@@ -229,6 +229,18 @@ validacion:before {
   transform: skewX(40deg);
   height: 50%;
   width: 100%;
+}
+/*
+	Font Colores
+*/
+.verde {
+  color: green;
+}
+.rojo {
+  color: red;
+}
+.gris {
+  color: #272727;
 }
 /* Colores btn Reserva.html*/
 .FormDefault {
@@ -451,7 +463,7 @@ validacion:before {
   width: 100%;
   margin: 0 auto;
 }
-#reservas > div {
+#reservas > article {
   width: 100%;
   margin: 1em auto;
   border: 4px solid #e57e1f;
@@ -460,6 +472,35 @@ validacion:before {
   border-radius: 1em;
   transform: skewx(3deg);
   background-color: white;
+}
+#reservas > article > object {
+  position: relative;
+  width: 100%;
+}
+#reservas .inputValidate {
+  position: absolute;
+  z-index: 100;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 1em;
+  background-color: #ccc;
+  color: red;
+}
+#reservas .iconsInput {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 10%;
+  border-radius: 0 1em 1em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #mapLoadUser {
   animation-name: loadRotate;

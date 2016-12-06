@@ -2,144 +2,161 @@
 
 class Validador {
 
-	constructor () {
+	constructor (element) {
 
-		this.data = new Array();
+		this.element = element;
+		this.status = undefined;
+		this.rules = {};
 
-	}
+		this.regExp = {
+			"mail": /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+			"tlf": /^\d{9}$/,
+			"dni": /^\d{8}[a-zA-Z]$/,
+			"matricula": /^\d{4}[a-zA-Z]{3}$/
+		}
 
-	/*	
-
-		Añade las diferentes secciones al validador
-
-	*/
-	setSection (i, element) {
-
-		var validador = this;
-		element = $(element);
-
-		var data = {};
-
-		element.children().each(function (i, element) {
-
-			var element = $(element);
-			var type = element.prop('nodeName');
-
-			if (type == "INPUT" || type == "SELECT"){
-
-				var dataObj = data[$(element).attr("name")] = {
-					"element": element,
-					"status": false
-				};
-				// Comprovamos el requerimiento del campo
-				if(!element.attr("required")){
-					data[$(element).attr("name")].status = true;
-				}
-				validador.initValidationEvent(element, dataObj);
-				
-			}
-			
-		});
-
-		this.data[i] = data;
+		this.setRules ();
+		this.initValidationEvent ();
 
 	}
+
 
 	/*
-		
-		Devuelve el stado de validacion de la seccion
+
+		Asigna las reglas de validacion
 
 	*/
-	getSectionStatus (section) {
+	setRules () {
 
-		var status = true;
+		var validador = this;
 
-		$.each(this.data[section], function (i, element) {
+		$(this.element).children("param").each(function (i, element) {
 
-			if (!element.status) {
-				status = false;
-				element.element.focus();
-				return false;
-			}
+			validador.rules[$(element).attr("name")] = $(element).attr("value");
 
 		});
 
-		return status;
-		
 	}
-
 
 	/*
 	
 		Inicia los eventos de validacion del elemento
 
 	*/
-	initValidationEvent (element, dataObj) {
+	initValidationEvent () {
 
 		var validador = this;
 
-		element.on(
-			"change paste keyup focusout focusin", 
+		$(this.element).children("input").on (
+			"change paste keyup focusout focusin",
 			function () {
 
-				// asignamos el status
-				if (!validador.validar (dataObj.element)) {
-					// Mostramos el mensaje
-					$(dataObj.element.next("validacion")[0]).show();
-					dataObj.status = false;
-				}else{
-					// Ocultamos el mensaje
-					$(dataObj.element.next("validacion")[0]).hide();
-					dataObj.status = true;
-				}
-				
+				validador.validar ();
 
 			}
-			
 		);
 
-		element.on("focusout", function () {
-			$(dataObj.element.next("validacion")[0]).hide();
-		});
 
 	}
 
 	/*
 		
-		Valida un elemento en funcion de sus reglas
+		Actualiza el status de validacion del objeto
 
 	*/
-	validar (element) {
+	setStatus (status) {
 
-		element = $(element);
+		var element = $(this.element).children("i");
+		// Asigna el stado
+		this.status = status;
 
-		switch (element.prop('nodeName')) {
-
-			case "INPUT": 
-				
-				// El elemento es requerido
-				if (element.attr("required")) {
-
-					// Longitud minima
-					if (element.attr("min") && element.val().length < element.attr("min")){
-						return false;
-					}
-					// Longitu maxima
-					if (element.attr("max") && element.val().length > element.attr("max")){
-						return false;
-					}
-
-				}
-
-				return true;
-
+		switch (status) {
+			case undefined:
+				element.html("");
 			break;
-			case "SELECT": 
-				
-				return true;
-
+			case true:
+				element.html("done");
+				element.addClass("verde");
+				element.removeClass("rojo");
 			break;
+			case false:
+				element.html("clear");
+				element.addClass("rojo");
+				element.removeClass("verde");
+			break;
+		}
 
+	}
+
+	/*
+
+		Pone el foco en el elemento
+
+	*/
+	setFocus () {
+		$(this.element).children("input").focus();
+	}
+
+	/*
+
+		Valida el objeto
+
+	*/
+	validar () {
+
+		var validador = this;
+		var statusUpdate = false;
+
+		// Sacamos el valor del input
+		var text = $(this.element).children("input").val();
+
+		$.each(this.rules, function(name, value) {
+			
+			switch (name) {
+				case "required": 
+					if (text == ""){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				case "minLength": 
+					if (text.length < value){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				case "maxLength": 
+					if (text.length > value){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				case "minNumber": 
+					if (parseInt(text) < value){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				case "maxNumber": 
+					if (parseInt(text) > value){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				case "regExp": 
+					if (!validador.regExp[value].test(text)){
+						validador.setStatus (false);
+						statusUpdate = true;
+					}
+				break;
+				default:
+					validador.setStatus (true);
+			}
+		
+		});
+
+		if (!statusUpdate) {
+			validador.setStatus (true);
 		}
 
 	}
