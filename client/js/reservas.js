@@ -62,6 +62,7 @@ class Reservas {
 
 	setStatus (status) { //true ++, false --
 
+		//console.log("set status", status);
 		// Comprueba si todos los campos de esta seccion son correctos
 		if (status) {
 			if(this.getSectionStatus (this.status)){
@@ -202,6 +203,7 @@ class Reservas {
 
 		});
 
+		//console.log(status);
 		return status;
 
 	}

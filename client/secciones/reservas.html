@@ -35,6 +35,15 @@
 
 	<article>
 		<object data="" type="input">
+			<p>¿Viaja con menores de 12 años?</p>
+			<input type="radio" name="niños" value="Si"/>Si
+			<input type="radio" name="niños" value="No" checked="checked"/>No
+			<input type="text" name="nPersonas" placeholder="Nº total de personas" />
+			<i class="material-icons iconsInput"></i>
+			<param name="required" value="true">
+			<param name="minNumber" value="5">
+		</object>
+		<object data="" type="input">
 			<input type="text" name="nombre" placeholder="Nombre" />
 			<i class="material-icons iconsInput"></i>
 			<param name="required" value="true">
@@ -73,15 +82,13 @@
 	</article>
 
 	<article style="display: none;">
-		<object data="" type="input">
+		<object data="" type="select">
 			<select name="tipoDeVehiculo">
 				<option value="moto">Moto</option>
 				<option value="coche">Coche</option>
 				<option value="furgoneta">Furgoneta</option>
 				<option value="autocaravana">Autocaravana</option>
 			</select>
-			<param name="required" value="true">
-			<param name="regExp" value="matricula">
 		</object>
 		<object data="" type="input">
 			<input type="text" name="matricula" placeholder="Matrícula" />
@@ -109,9 +116,15 @@
 			<param name="required" value="true">
 			<param name="minNumber" value="5">
 		</object>
-		<p>¿Viaja con menores de 12 años?</p>
-		<input type="radio" name="niños" value="Si"/>Si <br />
-		<input type="radio" name="niños" value="No" checked="checked"/>No <br />
+		<object data="" type="input">
+			<p>¿Viaja con menores de 12 años?</p>
+			<input type="radio" name="niños" value="Si"/>Si
+			<input type="radio" name="niños" value="No" checked="checked"/>No
+			<input type="text" name="nPersonas" placeholder="Nº total de personas" />
+			<i class="material-icons iconsInput"></i>
+			<param name="required" value="true">
+			<param name="minNumber" value="5">
+		</object>
 		<object data="" type="input">
 			<input type="text" name="nNinos" placeholder="¿Cuántos?" />
 			<i class="material-icons iconsInput"></i>
@@ -121,14 +134,14 @@
 	</article>
 
 	<article style="display: none;">
-		<p>Fecha llegada</p>
+		<!--<p>Fecha llegada</p>
 		<input type="date" name="fechaLlegada" />
 		<p>Hora llegada</p>
 		<input type="time" name="horaLlegada" />
 		<p>Fecha salida</p>
 		<input type="date" name="fechaSalida" />
 		<p>Hora salida</p>
-		<input type="time" name="horaSalida" />
+		<input type="time" name="horaSalida" />-->
 	</article>
 	<article style="display: none;">
 		Pagos

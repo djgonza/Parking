@@ -4,9 +4,10 @@ class Validador {
 
 	constructor (element) {
 
-		this.element = element;
-		this.status = undefined;
-		this.rules = {};
+		this.element 		= element;
+		this.elementForm 	= undefined;
+		this.status 		= undefined;
+		this.rules 			= {};
 
 		this.regExp = {
 			"mail": /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -15,11 +16,30 @@ class Validador {
 			"matricula": /^\d{4}[a-zA-Z]{3}$/
 		}
 
+		this.setElementForm();
 		this.setRules ();
 		this.initValidationEvent ();
 
+
 	}
 
+	/*
+
+		Extrae el elemento del object
+
+	*/
+	setElementForm () {
+
+		switch ($(this.element).attr("type")) {
+			case "input":
+				this.elementForm = $(this.element).children("input");
+			break;
+			case "select": 
+				this.elementForm = $(this.element).children("select");
+			break;
+		}
+
+	}
 
 	/*
 
@@ -47,15 +67,12 @@ class Validador {
 
 		var validador = this;
 
-		$(this.element).children("input").on (
+		this.elementForm.on (
 			"change paste keyup focusout focusin",
 			function () {
-
 				validador.validar ();
-
 			}
 		);
-
 
 	}
 
@@ -88,13 +105,17 @@ class Validador {
 
 	}
 
+	getStatus () {
+		return this.status;
+	}
+
 	/*
 
 		Pone el foco en el elemento
 
 	*/
 	setFocus () {
-		$(this.element).children("input").focus();
+		this.elementForm.focus();
 	}
 
 	/*
@@ -105,48 +126,50 @@ class Validador {
 	validar () {
 
 		var validador = this;
-		var statusUpdate = false;
 
-		// Sacamos el valor del input
-		var text = $(this.element).children("input").val();
+		// Sacamos el valor del campo
+		var text = this.elementForm.val();
+
+		// Validamos por defecto
+		validador.setStatus (true);
 
 		$.each(this.rules, function(name, value) {
 			
+			// Rompemos si no ha introducido datos
+			if(text == undefined) {
+				validador.setStatus (undefined)
+				return false;
+			}
+
 			switch (name) {
 				case "required": 
 					if (text == ""){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				case "minLength": 
 					if (text.length < value){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				case "maxLength": 
 					if (text.length > value){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				case "minNumber": 
 					if (parseInt(text) < value){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				case "maxNumber": 
 					if (parseInt(text) > value){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				case "regExp": 
 					if (!validador.regExp[value].test(text)){
 						validador.setStatus (false);
-						statusUpdate = true;
 					}
 				break;
 				default:
@@ -154,10 +177,6 @@ class Validador {
 			}
 		
 		});
-
-		if (!statusUpdate) {
-			validador.setStatus (true);
-		}
 
 	}
 
