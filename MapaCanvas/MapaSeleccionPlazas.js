@@ -29,8 +29,10 @@ class MapaSeleccionPlazas {
 		// Define el estado: false leyendo, true leido
 		this.status = false;
 
-		this.print ();
+		// Inicializa los eventos
 		this.setEvents ();
+		// Pinta el mapa
+		this.print ();
 
 
 	}
@@ -55,6 +57,7 @@ class MapaSeleccionPlazas {
 		};
 
 		this.plazas.push(obj);
+		this.print();
 
 	}
 
@@ -237,21 +240,6 @@ class MapaSeleccionPlazas {
 			mapa.print();
 			
 		}, false);
-
-		/*/ Desktop
-		this.element.addEventListener("mousedown", function (event) {
-			console.log(event);
-		});
-
-		this.element.addEventListener("drag", function(event){
-
-			console.log(event.layerX, event.layerY);
-
-			mapa.x = event.layerX;
-			mapa.y = event.layerY;
-			mapa.print ();
-
-		}, false);*/
 
 	}
 
