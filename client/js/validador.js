@@ -37,6 +37,12 @@ class Validador {
 			case "select": 
 				this.elementForm = $(this.element).children("select");
 			break;
+			case "check":
+				this.elementForm = $(this.element).children("input");
+			break;
+			case "radio":
+				this.elementForm = $(this.element).children("input");
+			break;
 		}
 
 	}
@@ -68,7 +74,7 @@ class Validador {
 		var validador = this;
 
 		this.elementForm.on (
-			"change paste keyup focusout focusin",
+			"change paste keyup focusout",
 			function () {
 				validador.validar ();
 			}

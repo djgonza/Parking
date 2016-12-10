@@ -14,11 +14,17 @@ class Reservas {
 		this.buttons;
 		// Punto del formulario
 		this.status = 0;
+		// Mapa seleccion plaza
+		this.mapa;
 
 	}
 
 	setElement (element) {
 		this.element = element;
+	}
+
+	setMapa (element) {
+		this.mapa = new MapaSeleccionPlazas(element);
 	}
 
 	setSections (elements) {
@@ -40,8 +46,9 @@ class Reservas {
 
 	setSectionChildrens (element) {
 
+		// Revisar
 		var data =  new Array();
-		$(element).children().each (function (i, element) {
+		$(element).children("object").each (function (i, element) {
 			data.push(new Validador(element));
 		});
 		return data;
@@ -62,7 +69,6 @@ class Reservas {
 
 	setStatus (status) { //true ++, false --
 
-		//console.log("set status", status);
 		// Comprueba si todos los campos de esta seccion son correctos
 		if (status) {
 			if(this.getSectionStatus (this.status)){

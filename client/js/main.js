@@ -10,5 +10,7 @@ $(function () {
 
 	//new DataPicker($("#datePicker"));
 
+	$("#mapaSeleccionPlazas").draggable();
+
 
 });
