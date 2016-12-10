@@ -11,9 +11,6 @@ class MapaSeleccionPlazas {
 		// Define las dimensiones del mapa
 		this.mapaW = 1280;
 		this.mapaH = 800;
-		// Definimos la escala del mapa
-		this.scaleW = this.element.width * 100 / this.mapaW;
-		this.scaleH = this.element.height * 100 / this.mapaH;
 		// Define el contexto del canvas
 		this.ctx = this.element.getContext('2d');
 		this.ctx.width = this.element.width;
@@ -186,7 +183,12 @@ class MapaSeleccionPlazas {
 	printPlaza (plaza) {
 
 		// Rectangulo
-    	this.ctx.fillStyle = plaza.color;
+		if(plaza.status){
+			this.ctx.fillStyle = "#ccc";
+		}else{
+			this.ctx.fillStyle = plaza.color;
+		}
+    	
     	this.ctx.fillRect(
     		plaza.x - this.x, 
     		plaza.y - this.y, 
@@ -224,8 +226,8 @@ class MapaSeleccionPlazas {
 			var y = event.touches[0].pageY - mapa.element.offsetTop;
 
 			// Actualizamos el punto de pintado del canvas
-			mapa.x += (mapa.desX - x) * (mapa.scaleW / 100 + 1);
-			mapa.y += (mapa.desY - y) * (mapa.scaleH / 100 + 1);
+			mapa.x += mapa.desX - x;
+			mapa.y += mapa.desY - y;
 
 			// Evitamos salir de los margenes
 			if(mapa.x < 0) { mapa.x = 0 };
@@ -240,6 +242,16 @@ class MapaSeleccionPlazas {
 			mapa.print();
 			
 		}, false);
+
+		this.element.addEventListener("click", function (event) {
+
+			// Posicion del click
+			var x = event.layerX + mapa.x;
+			var y = event.layerY + mapa.y;
+			// Comprovamos si algun elemento esta dentro
+			mapa.checkClick (x , y);
+
+		});
 
 	}
 
@@ -260,6 +272,36 @@ class MapaSeleccionPlazas {
 	*/
 	clearMap () {
 		this.ctx.clearRect(0, 0, this.element.width, this.element.height);
+	}
+
+	/*
+
+		Comprueba si se ha hecho click en algun elemento
+
+	*/
+	checkClick (x, y) {
+
+		// Tener en cuenta que hay pixeles de desviacion
+		console.log(x, y);
+
+		var mapa = this;
+
+		$.each(this.plazas, function (i, plaza) {
+
+			var xMin = plaza.x;
+			var yMin = plaza.y;
+			var xMax = plaza.x + plaza.width;
+			var yMax = plaza.y + plaza.height;
+
+			if(x > xMin && x < xMax && y > yMin && y < yMax) {
+				plaza.status = !plaza.status;
+				mapa.print();
+				return false;
+			}
+
+		});
+
+
 	}
 
 
