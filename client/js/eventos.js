@@ -21,6 +21,7 @@ class Eventos {
 		this.initEventNav (this.router, this);
 		this.initMapa (this.mapa, this);
 		this.initReservas (this.reservas, this);
+		this.initInicio ();
 
 	}
 
@@ -109,6 +110,19 @@ class Eventos {
 			mapa.initMap (document.getElementById("ubicacionMap"));
 			//inicializamos el boton de navegacion del map
 			eventos.initEventBtnNavigator(mapa);
+
+		});
+	}
+
+	/*
+		Inicia los eventos del inicio
+	*/
+	initInicio () {
+
+		$("main").on('DOMNodeInserted', "#inicio", function () {
+			//eliminamos el evento
+			$("main").unbind('DOMNodeInserted');
+			new Slider ($("#slider"));
 
 		});
 	}
