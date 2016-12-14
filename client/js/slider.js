@@ -4,15 +4,15 @@ class Slider {
 
 	constructor (element) {
 
-		console.log("init");
-
 		this.element = element;
 		this.imgs = new Array();
 		this.time = 0;
-		this.interval;
+		this.intervalTime;
+		this.fadeTime;
 		this.state = 0;
 
 		this.loadParam();
+		this.init();
 
 	}
 
@@ -27,9 +27,11 @@ class Slider {
 				case "img": 
 					slider.imgs.push(param.value);
 				break;
-
-				case "time":
-					slider.time = param.value;
+				case "intervalTime":
+					slider.intervalTime = param.value;
+				break;
+				case "fadeTime":
+					slider.fadeTime = param.value;
 				break;
 			}
 
@@ -45,18 +47,26 @@ class Slider {
 
 			slider.changeImgs();
 
-		}, this.time);
+		}, this.intervalTime);
 
 	}
 
 	changeImgs () {
 
-		this.state++;
-		if(this.state == this.imgs.length){
-			this.state = 0;
-		}
+		var slider = this;
 
-		console.log(this.element.children("img").src );
+		slider.state++;
+		if(slider.state == slider.imgs.length){
+			slider.state = 0;
+		}
+	
+		var element = $(slider.element.children("img"));
+
+		element.fadeOut(slider.fadeTime, function() {
+			element.attr("src", slider.imgs[slider.state]);
+		}).fadeIn(slider.fadeTime);
+
+		
 		
 
 	}
