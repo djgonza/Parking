@@ -23,20 +23,106 @@ class MapaSeleccionPlazas {
 		this.desY = 0;
 		// Define las plazas
 		this.plazas = new Array();
+		// Define la informacion de las plazas
+		this.plazasInfo = new Array();
+		// Informacion
+		this.info = {
+			"tipo"		: undefined,
+			"horaIni"	: undefined,
+			"horaEnd"	: undefined,
+			"selected"	: undefined
+		}
 		// Define el estado: false leyendo, true leido
 		this.status = false;
-
-
-		// Definimos las plazas !!!! Temporal !!!!!
-		this.setPlaza (234, 285, 0, 61, 26, 0, "f14", false, "#8C6239");
-		this.setPlaza (1214, 635, 0, 26, 103, 0, "f14", false, "#8C6239");
-
-
 		// Inicializa los eventos
 		this.setEvents ();
+		// Lee la informacion de las plazas
+		this.loadPlazasInfo ();
 		// Pinta el mapa
 		this.print ();
 
+	}
+
+
+	/*
+	
+		Lee la informacion necesaria para seleccionar la plaza
+
+	*/
+	loadInfo (tipo, horaIni, horaEnd, selected) {
+
+		
+
+		if(tipo !== undefined){
+			this.info.tipo = tipo;
+		}else{
+			this.info.tipo;
+		}
+
+		if(horaIni !== undefined){
+			this.info.horaIni = horaIni;
+		}else{
+			this.info.horaIni;
+		}
+
+		if(horaEnd !== undefined){
+			this.info.horaEnd = horaEnd;
+		}else{
+			this.info.horaEnd;
+		}
+
+		if(selected !== undefined){
+			this.info.selected = selected;
+		}else{
+			this.info.selected;
+		}
+
+	}
+
+	/*
+
+		Lee la informacion de las plazas para pintar en el mapa
+
+	*/
+	loadPlazasInfo () {
+
+		var mapa = this;
+
+		$.getJSON("client/js/plazasinfo.json", function(json) {
+		    mapa.plazasInfo = json;
+		});
+
+	}
+
+	/*
+
+		Pide las plazas libres en la fecha especificada
+
+	*/
+	getFreePlazas (horaIni, horaEnd) {
+
+		$.ajax({
+
+			url: "index.php",
+			data: { 
+				"plazasLibres": true,
+				"horaIni": horaIni,
+				"horaFin": horaFin
+			},
+			cache: false,
+			type: "GET",
+			success: function(response) {
+
+				console.log(response);
+
+			},
+			error: function(xhr) {
+				
+				alert("Error al pedir seccion");
+
+			}
+
+		});
 
 	}
 
@@ -59,7 +145,7 @@ class MapaSeleccionPlazas {
 			"color"	: color 	// Color de fondo
 		};
 
-		this.plazas.push(obj);
+		this.plazas[code] = obj;
 		this.print();
 
 	}
@@ -173,11 +259,10 @@ class MapaSeleccionPlazas {
 	printAllPlaza () {
 
 		var mapa = this;
-		$.each(mapa.plazas, function (i, plaza) {
-
-			mapa.printPlaza (plaza);
-
-		});
+		
+		for (var plaza in this.plazas) {
+			this.printPlaza (this.plazas[plaza]);
+		}
 
 	}
 

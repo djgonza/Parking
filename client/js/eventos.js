@@ -21,7 +21,7 @@ class Eventos {
 		this.initEventNav (this.router, this);
 		this.initMapa (this.mapa, this);
 		this.initReservas (this.reservas, this);
-		this.initInicio ();
+		this.initInicio (this.router);
 
 	}
 
@@ -69,7 +69,7 @@ class Eventos {
 
 		$("main").on('DOMNodeInserted', "#reservas", function () {
 			//eliminamos el evento
-			$("main").unbind('DOMNodeInserted');
+			$(this).unbind('DOMNodeInserted');
 			//ponemos el elemento
 			reservas.setElement ($("#reservas")[0]);
 			reservas.setMapa ($("#MapaSeleccionPlazas")[0]);
@@ -105,7 +105,7 @@ class Eventos {
 
 		$("main").on('DOMNodeInserted', "#ubicacion", function () {
 			//eliminamos el evento
-			$("main").unbind('DOMNodeInserted');
+			$(this).unbind('DOMNodeInserted');
 			//creamos el mapa
 			mapa.initMap (document.getElementById("ubicacionMap"));
 			//inicializamos el boton de navegacion del map
@@ -117,12 +117,17 @@ class Eventos {
 	/*
 		Inicia los eventos del inicio
 	*/
-	initInicio () {
+	initInicio (router) {
 
 		$("main").on('DOMNodeInserted', "#inicio", function () {
-			//eliminamos el evento
-			$("main").unbind('DOMNodeInserted');
+			// Eliminamos el evento
+			$(this).unbind('DOMNodeInserted');
+			// Iniciamos el slider
 			new Slider ($("#slider"));
+			// Iniciamos el evento del boton ver plazas libres
+			$("#reservaInicio").click(function () {
+				router.navegar("reservas", "Reservas");
+			});
 
 		});
 	}

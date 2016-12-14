@@ -23,6 +23,14 @@ class Controller {
 
             }
 
+            // Plazas libres
+            if(isset($_GET["plazasLibres"])) {
+
+                $this -> getPlazasLibres ($_GET["horaIni"], $_GET["horaFin"]);
+                exit;
+
+            }
+
         }
 
         /*
@@ -65,16 +73,19 @@ class Controller {
         }
 
         // Seccion no encontrada
-        $this->notFound();
+        include self::DIR_ERROR404;
 
     }
 
-    /* 
-        Pagina no encontrada
+    /*
+
+        Envia las plazas libres
+
     */
-    private function notFound (){
-        include self::DIR_ERROR404;
-        exit;
+    private function getPlazasLibres($horaIni, $horaFin) {
+
+        echo "Reciviendo";
+
     }
 
 
