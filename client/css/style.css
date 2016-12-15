@@ -70,7 +70,7 @@ main {
   position: relative;
   margin: 0 auto;
   max-width: 1200px;
-  width: 90%;
+  width: 100%;
 }
 h3 {
   color: rgba(0, 0, 0, 0.5);
@@ -83,7 +83,11 @@ footer {
   background: #272727;
   color: #ffffff;
   padding: 1em 0 1em 0;
+  margin-top: 1em;
   text-align: center;
+}
+footer div {
+  margin: 0 auto;
 }
 input {
   border: none;
@@ -173,13 +177,25 @@ canvas {
 /*
 	inicio.html
 */
+.buscador-content {
+  position: absolute;
+  top: 1em;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
 .buscador {
+  margin: 0 auto;
+  width: 70%;
+  position: relative;
+}
+.buscador > div {
   background: #eeeeee;
   padding: 1em;
-  position: absolute;
-  top: 3em;
-  left: 2em;
-  width: 70%;
+  box-shadow: 4px 4px 8px #888888;
+}
+.buscador > div .apartados {
+  width: 100%;
 }
 .buscador label {
   margin: 1em 0;
@@ -199,7 +215,10 @@ canvas {
 }
 /*Otra parte esta en elementos donde tarifas*/
 .buscador button {
-  margin: 2em auto !important;
+  margin: 0 auto !important;
+  position: absolute;
+  bottom: -3em;
+  right: 0;
 }
 /*
 	reservas.html
@@ -308,8 +327,9 @@ canvas {
 	Slider
 */
 .slider > img {
-  width: 100%;
-  max-height: 100%;
+  /*width: 100%;*/
+
+  height: 30em;
 }
 .btnForm {
   max-width: 100px;
@@ -386,6 +406,9 @@ canvas {
 }
 #inicio {
   position: relative;
+}
+#inicio .info {
+  margin-top: 1em;
 }
 #servicios h3,
 #tarifas h3 {
@@ -536,8 +559,9 @@ canvas {
 }
 #reservas nav {
   width: 90%;
-  margin: 1em auto;
-  margin-top: 0;
+  /*margin: 1em auto;
+	margin-top: 0;*/
+
 }
 #reservas > article {
   width: 100%;
@@ -602,7 +626,7 @@ canvas {
     border-bottom: none;
   }
   header nav ul li:hover,
-  nav ul i:hover {
+  header nav ul i:hover {
     border-top: 4px solid #e57e1f;
     border-bottom: none;
   }
@@ -611,6 +635,13 @@ canvas {
   }
   #btnHeadNav {
     display: none !important;
+  }
+  /*
+  		inicio.html
+  	*/
+  .buscador-content {
+    top: 3em;
+    right: 15em;
   }
   /*
   	reservas.html
