@@ -3,7 +3,9 @@
 	font-size: 3em;
 	cursor: pointer;
 }
-
+#inicio{
+	position: relative;
+}
 #servicios h3, #tarifas h3{
 	text-align: center;
 }
@@ -107,7 +109,7 @@
 			vertical-align: bottom;
 			color: @naranja;
 		}
-		#tarifas section article button{
+		#tarifas section article button, .buscador button{
 			background: @naranja;
 			color: @blanco;
 			padding: 0.6em 1em;
@@ -120,7 +122,7 @@
 		    bottom: -25px;
 		    right: -15px;*/
 		}
-		#tarifas section article button:hover{
+		#tarifas section article button:hover, .buscador button:hover{
 			background: rgba(80, 80, 80, 1);
 		}
 	#tarifas p{
@@ -140,8 +142,9 @@
 
 
 #reservas nav {
-	width: 100%;
-    margin: 0 auto;
+	width: 90%;
+    margin: 1em auto;
+	margin-top: 0;
 }
 	#reservas>article {
 		width: 100%;
