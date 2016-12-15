@@ -51,8 +51,6 @@ class MapaSeleccionPlazas {
 	*/
 	loadInfo (tipo, horaIni, horaEnd, selected) {
 
-		
-
 		if(tipo !== undefined){
 			this.info.tipo = tipo;
 		}else{

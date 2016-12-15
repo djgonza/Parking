@@ -34,6 +34,9 @@ class Mapa {
 	*/
 	initMap (mapElement) {
 
+		// Parado
+		return false;
+
 		this.map = mapElement;
 		this.map = new google.maps.Map(mapElement, {
           center: this.locationsDefault.mariana,
