@@ -33,7 +33,7 @@
 		</div>
 	</nav>
 
-	<article class="plazas" style="display: none;">
+	<article class="plazas" style="">
 		<canvas id="MapaSeleccionPlazas"></canvas>
 		<nav class="menuPlaza row filas-xs jcenter-xs">
 			<div class="col-sm-12">
@@ -81,7 +81,7 @@
 		</nav>
 	</article>
 
-	<article style="display: none;">
+	<article style="">
 		<object data="" type="input">
 			<input type="text" name="nombre" placeholder="Nombre" />
 			<i class="material-icons iconsInput"></i>
@@ -97,10 +97,9 @@
 			<param name="maxLength" value="20">
 		</object>
 		<object data="" type="input">
-			<input type="text" name="apellidoDos" placeholder="Segundo Apellido" />
-			<i class="material-icons iconsInput"></i>
-		</object>
-		<object data="" type="input">
+			<select name="tipoDocumento" id="">
+				<option value=""></option>
+			</select>
 			<input type="text" name="dni" placeholder="DNI" />
 			<i class="material-icons iconsInput"></i>
 			<param name="required" value="true">
@@ -118,35 +117,6 @@
 			<param name="required" value="true">
 			<param name="regExp" value="tlf">
 		</object>
-	</article>
-
-	<article style="display: none;">
-		<object data="" type="select">
-			<select name="tipoDeVehiculo">
-				<option value="moto">Moto</option>
-				<option value="coche">Coche</option>
-				<option value="furgoneta">Furgoneta</option>
-				<option value="autocaravana">Autocaravana</option>
-			</select>
-		</object>
-		<object data="" type="input">
-			<input type="text" name="matricula" placeholder="Matrícula" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="regExp" value="matricula">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="nPlazas" placeholder="Nº de plazas" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minNumber" value="1">
-			<param name="maxNumber" value="3">
-		</object>
-	</article>
-
-	
-
-	<article style="display: none;">
 		<object data="" type="input">
 			<input type="text" name="nPersonas" placeholder="Nº total de personas" />
 			<i class="material-icons iconsInput"></i>
@@ -167,6 +137,30 @@
 			<i class="material-icons iconsInput"></i>
 			<param name="required" value="true">
 			<param name="minNumber" value="0">
+		</object>
+	</article>
+
+	<article style="">
+		<object data="" type="select">
+			<select name="tipoDeVehiculo">
+				<option value="moto">Moto</option>
+				<option value="coche">Coche</option>
+				<option value="furgoneta">Furgoneta</option>
+				<option value="autocaravana">Autocaravana</option>
+			</select>
+		</object>
+		<object data="" type="input">
+			<input type="text" name="matricula" placeholder="Matrícula" />
+			<i class="material-icons iconsInput"></i>
+			<param name="required" value="true">
+			<param name="regExp" value="matricula">
+		</object>
+		<object data="" type="input">
+			<input type="text" name="nPlazas" placeholder="Nº de plazas" />
+			<i class="material-icons iconsInput"></i>
+			<param name="required" value="true">
+			<param name="minNumber" value="1">
+			<param name="maxNumber" value="3">
 		</object>
 	</article>
 
