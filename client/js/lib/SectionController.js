@@ -9,11 +9,11 @@ class SectionController {
 		this.element;
 		this.status = false;
 
-		this.init(this);
+		this.loadHtml(this);
 
 	}
 
-	init (controller){
+	loadHtml (controller){
 
 		// Pedimos el html
 		$.ajax({

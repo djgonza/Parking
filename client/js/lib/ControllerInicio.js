@@ -5,28 +5,66 @@ class ControllerInicio extends SectionController {
 	constructor (father) {
 		
 		super("inicio", father);
+
 		this.slider;
-		//console.log(this.element);
-		//this.slider = new Slider (this.element.children("object > img"));
 		
-		this.initSlider(this);
+		this.init(this);
 
 	}
 
-	/*
+	init (controller) {
 
-		Inicia el slider
-
-	*/
-	initSlider (controller) {
-
-		if(this.element) {
-			this.slider = new Slider(this.element.children("object"));
-		}else{
+		if(!this.status) {
 			setTimeout(function () {
-				controller.initSlider(controller);
+				controller.init(controller);
 			}, 500);
+		}else{
+			this.slider = new Slider(this.element.children("object"));
+			this.initEvents(this);
 		}
+
+	}
+
+	initEvents (controller) {
+
+		// Evento btn
+		this.element.find("button").click (function () {
+			controller.validateForm ();
+		});
+
+		/*
+
+			Crea el elemento calendario o time picker
+
+		*/
+		this.element.find("input").each(function () {
+
+			var input = this;
+			var fieldClass;
+
+			switch (input.name) {
+				case "date": 
+					fieldClass = new DatePicker(input, 7, 5, 15);
+				break;
+				case "time": 
+					fieldClass = new TimePicker(input, 0, 12);
+				break;
+			}
+
+			// Oculata cuando click en la seccion
+			controller.element.click(function (event) {
+				if(event.target !== input){
+					fieldClass.hide();
+				}
+			});
+
+		});
+
+	}
+
+	validateForm () {
+
+		console.log(this.element.find("input"));
 
 	}
 

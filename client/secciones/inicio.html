@@ -1,51 +1,46 @@
 <section id="inicio" style="overflow: hidden">
-  <object id="slider" class="slider">
-    <img src="/client/img/bg1.jpg">
-    <param name="intervalTime" value="5000">
-    <param name="fadeTime" value="1000">
-    <param name="img" value="/client/img/bg1.jpg">
-    <param name="img" value="/client/img/bg2.jpg">
-    <param name="img" value="/client/img/bg3.jpg">
-    <param name="img" value="/client/img/bg4.jpg">
-  </object>
-  <article class="buscador-content">
-    <div class="buscador">
-      <div class="row dcolumnas-xs dfilas-sm">
-        <div class="apartados row filas-xs">
-          <label class="col-xs-12">Tipo del vehículo</label>
-          <br />
-          <select class="col-xs-12" name="vehiculos">
-            <option value="defecto" disabled selected></option>
-            <option value="Moto">MOTO</option>
-            <option value="Coche">COCHE</option>
-            <option value="Furgoneta">FURGONETA</option>
-            <option value="Autocaravana">AUTOCARAVANA</option>
-          </select>
+    <object id="slider" class="slider">
+        <img src="/client/img/bg1.jpg">
+        <param name="intervalTime" value="5000">
+        <param name="fadeTime" value="1000">
+        <param name="img" value="/client/img/bg1.jpg">
+        <param name="img" value="/client/img/bg2.jpg">
+        <param name="img" value="/client/img/bg3.jpg">
+        <param name="img" value="/client/img/bg4.jpg">
+    </object>
+    <article class="buscador-content">
+        <div class="buscador">
+            <div class="row dcolumnas-xs dfilas-sm">
+                <div class="apartados row filas-xs">
+                    <label class="col-xs-12">Tipo del vehículo</label>
+                    <select class="col-xs-12" name="vehiculos">
+                        <!--<option value="defecto" disabled selected></option>-->
+                        <option value="Moto">MOTO</option>
+                        <option value="Coche">COCHE</option>
+                        <option value="Furgoneta">FURGONETA</option>
+                        <option value="Autocaravana">AUTOCARAVANA</option>
+                    </select>
+                </div>
+                <div class="apartados row filas-xs">
+                    <label class="col-xs-12">Fecha y hora de entrada</label>
+                    <i class="material-icons col-xs-2">today</i>
+                    <input class="col-xs-4" type="text" name="date">
+                    <i class="material-icons col-xs-2">query_builder</i>
+                    <input class="col-xs-4" type="text" name="time" value="00">
+                </div>
+                <div class="apartados row filas-xs">
+                    <label class="col-xs-12">Fecha y hora de salida</label>
+                    <i class="material-icons col-xs-2">today</i>
+                    <input class="col-xs-4" type="text" name="date">
+                    <i class="material-icons col-xs-2">query_builder</i>
+                    <input class="col-xs-4" type="text" name="time">
+                </div>
+            </div>
+            <button name="botonEnvio" value="ReservaAhora">Comprobar Disponibilidad</button>
         </div>
-        <div class="apartados row filas-xs">
-          <br />
-          <label class="col-xs-12">Fecha y hora de entrada</label>
-          <br />
-          <i class="material-icons col-xs-2">today</i>
-          <input class="col-xs-4" type="date">
-          <i class="material-icons col-xs-2">query_builder</i>
-          <input class="col-xs-4" type="time" name="usr_time">
-        </div>
-        <div class="apartados row filas-xs">
-          <br />
-          <label class="col-xs-12">Fecha y hora de salida</label>
-          <br />
-          <i class="material-icons col-xs-2">today</i>
-          <input class="col-xs-4" type="date">
-          <i class="material-icons col-xs-2">query_builder</i>
-          <input class="col-xs-4" type="time" name="usr_time">
-        </div>
-      </div>
-      <button name="botonEnvio" value="ReservaAhora">Reserva Ahora</button>
-    </div>
-  </article>
-  <article class="info">
-      <h3> Seguridad y confort a un kilómetro de la fiesta</h3>
-      <p>Puede aparcar su vehículo con seguridad, vigilancia 24 horas. Abierto desde el día 6 a las 8:00 y cierra el día 15 a las 14:00. Entrada y salida 24 horas.</p>
-  </article>
+    </article>
+    <article class="info">
+        <h3> Seguridad y confort a un kilómetro de la fiesta</h3>
+        <p>Puede aparcar su vehículo con seguridad, vigilancia 24 horas. Abierto desde el día 6 a las 8:00 y cierra el día 15 a las 14:00. Entrada y salida 24 horas.</p>
+    </article>
 </section>

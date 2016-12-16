@@ -156,6 +156,7 @@ class Router {
 				this.hideSeccion (this.actuallySection);
 				this.actuallySection = section;
 				this.initSection(section);
+				this.setState (section, section);
 				
 			}		
 

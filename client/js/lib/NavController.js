@@ -20,7 +20,6 @@ class NavController {
 
 		});
 
-		console.log(this.element);
 		this.element.children("i").click (function () {
 			nav.element.children("ul").toggle();
 			nav.element.children("ul").children("li").toggle();
