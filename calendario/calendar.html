@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Calendario</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+<script src="jquery.ui.datepicker-es.js"></script>
+<style>
+/*div principal del datepicker*/
+.ui-datepicker
+{
+background: white;
+}
+
+/*Tabla con los días del mes*/
+.ui-datepicker table
+{
+font-size: 9px;
+}
+
+/*La cabecera*/
+.ui-datepicker .ui-datepicker-header
+{
+font-size: 12px;
+background: #ffb52b;
+}
+
+/*Para los días de la semana: Sa Mo ... */
+.ui-datepicker th
+{
+color: black;
+}
+
+/*Para items con los días del mes por defecto */
+.ui-datepicker .ui-state-default
+{
+background: lightgray;
+}
+
+/*Para el item del día del mes seleccionado */
+.ui-datepicker .ui-state-active
+{
+background: #ffb52b;
+color: gray;
+}
+</style>
+<script>
+$(function () {
+	 $.datepicker.regional['es'] = {
+ closeText: 'Cerrar',
+ prevText: '<Ant',
+ nextText: 'Sig>',
+ currentText: 'Hoy',
+ monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+ monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+ dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+ dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+ dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+ weekHeader: 'Sm',
+ dateFormat: 'dd/mm/yy',
+ firstDay: 1,
+ isRTL: false,
+ showMonthAfterYear: false,
+ yearSuffix: ''
+ };
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+$(function () {
+$("#fecha").datepicker();
+});
+    $('#datepicker').datepicker({
+        dateFormat: 'yy-mm-dd',
+        showOn: "button",
+        buttonImage: "images/calendario.png",
+        buttonImageOnly: true,
+        minDate: new Date(2017, 7 - 1, 5),
+        maxDate: new Date(2017, 7 - 1, 16),
+        inline: true
+    });
+});
+</script>
+</head>
+
+<body>
+<p>
+Fecha Entrada:
+<input type="text" id="datepicker" />
+</p>
+</body>
+</html>
