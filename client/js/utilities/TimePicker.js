@@ -20,7 +20,6 @@ class TimePicker {
 		this.initEvents (this);
 		this.createElement (this);
 		
-
 	}
 
 	initEvents (picker) {

@@ -51,7 +51,7 @@ class ControllerInicio extends SectionController {
 				break;
 			}
 
-			// Oculata cuando click en la seccion
+			// Oculta cuando click en la seccion
 			controller.element.click(function (event) {
 				if(event.target !== input){
 					fieldClass.hide();
