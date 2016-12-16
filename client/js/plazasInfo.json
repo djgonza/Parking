@@ -1,3 +1,9 @@
+// Type:
+// 0: coche
+// 1: caravana
+// 2: moto
+// 3: furgoneta
+
 {
 	"f14": {
 		"x"		: 234,
