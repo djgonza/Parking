@@ -36,12 +36,20 @@ class TimePicker {
 			event.stopPropagation();
 		});
 
+		// Click fuera del elemento
+		$("html").click (function (event) {
+			if(event.target != picker.father[0]){
+				picker.hide();
+				event.preventDefault;
+			}
+		});
+
 	}
 
 	createElement (picker) {
 
 		// Creamos los elementos
-		this.element = $("<div>");
+		this.element = $("<div>").addClass("timePicker");
 		var iconUpHours = $("<i></i>").addClass("material-icons")
 							   .html("keyboard_arrow_up")
 							   .click(function (event) {
@@ -79,10 +87,12 @@ class TimePicker {
 	}
 
 	show (){
+		//console.log("show");
 		this.element.show();
 	}
 
 	hide () {
+		//console.log("hide");
 		this.element.hide();
 	}
 

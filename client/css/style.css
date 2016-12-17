@@ -30,6 +30,7 @@ header img {
   height: 4.5em;
 }
 header nav ul {
+  display: none !important;
   position: absolute;
   width: 50%;
   margin: 0 -25%;
@@ -740,4 +741,10 @@ canvas {
     /* Chrome, Safari, Opera */
     transform: rotate(360deg);
   }
+}
+.datePicker th {
+  color: #ccc;
+}
+.datePicker .selectable {
+  color: #000;
 }

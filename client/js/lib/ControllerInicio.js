@@ -39,24 +39,14 @@ class ControllerInicio extends SectionController {
 		*/
 		this.element.find("input").each(function () {
 
-			var input = this;
-			var fieldClass;
-
-			switch (input.name) {
+			switch (this.name) {
 				case "date": 
-					fieldClass = new DatePicker(input, 7, 5, 15);
+					new DatePicker(this, 6, 5, 15);
 				break;
 				case "time": 
-					fieldClass = new TimePicker(input, 0, 12);
+					new TimePicker(this, 0, 12);
 				break;
 			}
-
-			// Oculta cuando click en la seccion
-			controller.element.click(function (event) {
-				if(event.target !== input){
-					fieldClass.hide();
-				}
-			});
 
 		});
 
