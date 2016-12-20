@@ -2,10 +2,9 @@
 
 class NavController {
 
-	constructor (element, router) {
+	constructor (element) {
 		
 		this.element = $(element);
-		this.router = router;
 		this.init(this);
 
 	}
@@ -15,7 +14,7 @@ class NavController {
 		$.each(nav.element.children("ul").children("li"), function (i, element) {
 
 			$(element).click(function () {
-				nav.router.navigate($(element).text().toLowerCase());
+				Parking.Router.navigate($(element).text().toLowerCase());
 			});
 
 		});

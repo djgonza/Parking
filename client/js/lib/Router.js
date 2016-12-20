@@ -79,19 +79,19 @@ class Router {
 		// Solo llegan peticiones de secciones validas
 		switch (section){
 			case "inicio":
-				this.sections[section] = new ControllerInicio(this.element);
+				Parking.Sections[section] = new ControllerInicio(this.element);
 			break;
 			case "servicios":
-				this.sections[section] = new ControllerServicios(this.element);
+				Parking.Sections[section] = new ControllerServicios(this.element);
 			break;
 			case "ubicacion":
-				this.sections[section] = new ControllerUbicacion(this.element);
+				Parking.Sections[section] = new ControllerUbicacion(this.element);
 			break;
 			case "tarifas":
-				this.sections[section] = new ControllerTarifas(this.element);
+				Parking.Sections[section] = new ControllerTarifas(this.element);
 			break;
 			case "reservas":
-				this.sections[section] = new ControllerReservas(this.element);
+				Parking.Sections[section] = new ControllerReservas(this.element);
 			break;
 			default:
 
@@ -106,7 +106,7 @@ class Router {
 
 	*/
 	showSeccion (section) {
-		if(this.issetSeccion (section)) this.sections[section].show();
+		if(this.issetSeccion (section)) Parking.Sections[section].show();
 	}
 
 	/*
@@ -116,7 +116,7 @@ class Router {
 	*/
 	hideSeccion (section) {
 		
-		if(this.issetSeccion (section)) this.sections[section].hide();
+		if(this.issetSeccion (section)) Parking.Sections[section].hide();
 		
 	}
 
@@ -142,7 +142,7 @@ class Router {
 		if(this.issetSeccion (section)){
 			
 			// Seccion inicializada
-			if(this.sections[section]){
+			if(Parking.Sections[section]){
 				
 				this.hideSeccion (this.actuallySection);
 				this.showSeccion (section);

@@ -29,7 +29,16 @@ class MapSelectioSquares {
 		this.squaresInfo;
 		// Plazas validas
 		this.squaresValid;
-
+		// Fecha entrada
+		this.dateIni = {
+			"date": 0,
+			"time": 0
+		}
+		// Fecha Salida
+		this.dateEnd = {
+			"date": 0,
+			"time": 0
+		}
 
 
 
@@ -42,10 +51,24 @@ class MapSelectioSquares {
 
 	init (map) {
 
+		this.initInputs ();
 		this.loadSquares (this);
 		this.initEvents (this);
 		this.setCanvasDimension ();
 		this.print ();
+
+	}
+
+	initInputs () {
+
+		this.dateIni.date = $("#reservasDateIni");
+		new DatePicker($("#reservasDateIni"), 6, 5, 15);
+		this.dateIni.date = $("#reservasDateEnd");
+		new DatePicker($("#reservasDateEnd"), 6, 5, 15);
+		this.dateEnd.time = $("#reservasTimeIni");
+		new TimePicker($("#reservasTimeIni"), 0, 12);
+		this.dateEnd.time = $("#reservasTimeEnd");
+		new TimePicker($("#reservasTimeEnd"), 0, 12);
 
 	}
 
@@ -88,7 +111,6 @@ class MapSelectioSquares {
 		});*/
 
 		this.element[0].addEventListener("click", function (event) {
-			console.log(event);
 			map.selectSquare (map, event.layerX, event.layerY);
 		});
 
@@ -268,20 +290,21 @@ class MapSelectioSquares {
 		y += this.printControl.y;
 
 		$.each(this.squaresInfo, function (code, square) {
-			
+
 			var xMin = square.x;
 			var yMin = square.y;
 			var xMax = square.x + square.width;
 			var yMax = square.y + square.height;
 
 			if(x > xMin && x < xMax && y > yMin && y < yMax) {
-				console.log(x, y, xMin, yMin, xMax, yMax);
 				map.value = map.value == code ? undefined : code;
 				map.print();
 				return false;
 			}
 
 		});
+
+		Parking.UserInfo.Square.Id = this.value;
 
 	}
 

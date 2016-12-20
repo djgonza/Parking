@@ -47,19 +47,19 @@ class DatePicker {
 
 	createElement (picker) {
 
-		// Creamos los elementos
-		this.element = $("<div>").addClass("datePicker");
-
-		// Creamos la tabla
-		var table = $("<table>").append($("<caption>").html("Julio"));
-		table.append($("<tr>").html("<th>Lu</th><th>Ma</th><th>Mi</th><th>Ju</th><th>Vi</th><th>Sa</th><th>Do</th>"));
-
 		// Inicializamos la fecha
 		var date = new Date();
 		if(date.getMonth() > this.month){
 			date.setFullYear(date.getFullYear() + 1);
 		}
 		date = new Date(date.getFullYear(), this.month, 0);
+
+		// Creamos los elementos
+		this.element = $("<div>").addClass("datePicker");
+
+		// Creamos la tabla
+		var table = $("<table>").append($("<caption>").html("Julio " + date.getFullYear()));
+		//table.append($("<tr>").html("<th>Lu</th><th>Ma</th><th>Mi</th><th>Ju</th><th>Vi</th><th>Sa</th><th>Do</th>"));
 
 		// Creamos las celdas del calendario
 		var dayWeekIni = date.getDay();

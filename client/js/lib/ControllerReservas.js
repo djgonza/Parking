@@ -6,6 +6,7 @@ class ControllerReservas extends SectionController {
 		
 		super("reservas", father);
 		this.mapa;
+		this.step = 0;
 
 		this.init(this);
 	}
@@ -27,7 +28,21 @@ class ControllerReservas extends SectionController {
 
 	initEvents (controller) {
 
-		
+		//Revisar
+		$("#btnSiguiente").click(function () {
+			controller.setStep (controller.step++ + 1);
+		});
+
+		$("#btnAnterior").click(function () {
+			controller.setStep (controller.step-- - 1);
+		});
+
+	}
+
+	setStep (step) {
+
+		this.element.children("article").hide();
+		$(this.element.children("article")[step]).show();
 
 	}
 

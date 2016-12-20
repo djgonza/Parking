@@ -8,8 +8,8 @@ class TimePicker {
 		this.father = $(father);
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.hours = "12";
-		this.minutes = "0";
+		this.hours = 12;
+		this.minutes = 0;
 		this.init();
 
 	}
@@ -50,36 +50,22 @@ class TimePicker {
 
 		// Creamos los elementos
 		this.element = $("<div>").addClass("timePicker");
-		var iconUpHours = $("<i></i>").addClass("material-icons")
+		var iconUp = $("<i></i>").addClass("material-icons")
 							   .html("keyboard_arrow_up")
 							   .click(function (event) {
-							   		picker.upHours();
+							   		picker.up();
 							   		event.stopPropagation();
 							   });
-		var iconUpMinutes = $("<i></i>").addClass("material-icons")
-							   .html("keyboard_arrow_up")
-							   .click(function (event) {
-							   		picker.toggleMinutes();
-							   		event.stopPropagation();
-							   });
-		var iconDownHours = $("<i></i>").addClass("material-icons")
+		var iconDown = $("<i></i>").addClass("material-icons")
 							   .html("keyboard_arrow_down")
 							   .click(function (event) {
-							   		picker.downHours();
-							   		event.stopPropagation();
-							   });
-		var iconDownMinutes = $("<i></i>").addClass("material-icons")
-							   .html("keyboard_arrow_down")
-							   .click(function (event) {
-							   		picker.toggleMinutes();
+							   		picker.down();
 							   		event.stopPropagation();
 							   });
 
 		// Añadimos los elementos
-		this.element.append(iconUpHours);
-		this.element.append(iconUpMinutes);
-		this.element.append(iconDownHours);
-		this.element.append(iconDownMinutes);
+		this.element.append(iconUp);
+		this.element.append(iconDown);
 
 		// Añadimos al input
 		this.father.after (this.element.hide());
@@ -96,11 +82,16 @@ class TimePicker {
 		this.element.hide();
 	}
 
-	upHours () {
+	up () {
 		
-		this.hours += 1;
+		this.minutes += 30;
 
-		if(this.hours > this.endTime) {
+		if(this.minutes == 60){
+			this.minutes = 0;
+			this.hours ++;
+		}
+
+		if(this.hours >= this.endTime) {
 			this.hours = this.startTime;
 		}
 
@@ -108,28 +99,26 @@ class TimePicker {
 
 	}
 
-	downHours () {
+	down () {
 
-		this.hours -= 1;
+		this.minutes -= 30;
 
-		if(this.hours < this.startTime) {
-			this.hours = this.endTime;
+		if(this.minutes < 0){
+			this.minutes = 30;
+			this.hours--;
+			if(this.hours <= this.startTime) {
+				this.hours = this.endTime;
+			}
+
 		}
 
 		this.updateInput();
 
 	}
 
-	toggleMinutes () {
-		
-		this.minutes = (this.minutes == 0) ? 3 : 0;
-		this.updateInput();
-
-	}
-
 	updateInput () {
 
-		this.father.val((this.hours < 10 ? "0" + this.hours : this.hours) + ":" + this.minutes + 0);
+		this.father.val((this.hours < 10 ? "0" + this.hours : this.hours) + ":" + (this.minutes == 0 ? "00" : this.minutes));
 	}
 
 }

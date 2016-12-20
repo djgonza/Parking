@@ -19,7 +19,7 @@ class ControllerInicio extends SectionController {
 				controller.init(controller);
 			}, 500);
 		}else{
-			this.slider = new Slider(this.element.children("object"));
+			//this.slider = new Slider(this.element.children("object"));
 			this.initEvents(this);
 		}
 
@@ -37,7 +37,7 @@ class ControllerInicio extends SectionController {
 			Crea el elemento calendario o time picker
 
 		*/
-		this.element.find("input").each(function () {
+		this.element.find("input").each(function (i) {
 
 			switch (this.name) {
 				case "date": 
@@ -54,7 +54,21 @@ class ControllerInicio extends SectionController {
 
 	validateForm () {
 
-		console.log(this.element.find("input"));
+		//Revisar cuando pueda
+		var dateIni = $(this.element.find("input")[0]).val().split("/");
+		var timeIni = $(this.element.find("input")[1]).val().split(":");
+		var dateEnd = $(this.element.find("input")[2]).val().split("/");
+		var timeEnd = $(this.element.find("input")[3]).val().split(":");
+
+		Parking.UserInfo.Date.Ini.Date.Day = dateIni[0];
+		Parking.UserInfo.Date.Ini.Time.Hour = timeIni[0];
+		Parking.UserInfo.Date.Ini.Time.Minute = timeIni[1];
+
+		Parking.UserInfo.Date.End.Date.Day = dateEnd[0];
+		Parking.UserInfo.Date.End.Time.Hour = timeEnd[0];
+		Parking.UserInfo.Date.End.Time.Minute = timeEnd[1];
+
+		Parking.Router.navigate("reservas");
 
 	}
 
