@@ -1,0 +1,365 @@
+/* Resets */
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Roboto, sans-serif
+}
+
+li {
+	list-style: none;
+	text-decoration: none;
+}
+
+ul {
+	padding: 0;
+}
+
+body, html, main{
+	height: 100%;
+}
+
+/* 
+	Styles base
+*/
+
+body{
+	background: rgba(238, 238, 238, 1.0);
+}
+
+header{
+	background: rgba(255, 255, 255, 0.8);
+    /*position: fixed;*/
+    width: 100%;
+    z-index: 100;
+}
+	header img{
+		height: 4.5em;
+	}
+	header nav ul {
+		display: block !important;
+	    position: absolute;
+	    width: 50%;
+	    margin: 0 -25%;
+	    top: 5em;
+	    background: rgba(255, 255, 255, 1);
+	    border: 2px solid rgba(229, 126, 31, 1.0);
+	    z-index: 10000;
+	}
+	header nav ul li{
+		color: rgba(39, 39, 39, 1.0);
+		padding: 1em;
+		border-bottom: 4px solid rgba(0, 0, 0, 0);
+		font-size: 1.2em;
+	    cursor: pointer;
+	}
+	header ul li img {
+		width: 32px;
+	    height: 32px;
+	}
+	header nav ul li{
+		display: none;
+	}
+	header nav ul li:hover, nav ul i:hover{
+		color: rgba(229, 126, 31, 1.0);
+		border-bottom: 4px solid rgba(229, 126, 31, 1.0);	
+	}
+	header nav ul li:active, nav ul i:active{
+		color: rgba(229, 126, 31, 1.0);
+	}
+
+main {
+	position: relative;
+	margin: 0 auto;
+	max-width: 1200px;
+	width: 90%;
+}
+	h3{
+		color: rgba(0, 0, 0, 0.5);
+	}
+	h1, h2{
+		text-align: center;
+	}
+
+footer{
+	background: rgba(80, 80, 80, 1.0);
+	color: rgba(255, 255, 255, 1.0);
+	padding: 1em 0 1em 0;
+	text-align: center;
+}
+
+/*
+
+	Elementos
+
+*/
+
+#btnHeadNav {
+	display: block;
+	font-size: 3em;
+	cursor: pointer;
+}
+
+#servicios h3, #tarifas h3{
+	text-align: center;
+}
+
+#servicios, #ubicacion, #tarifas, #reservas{
+	margin-top: 1em;
+}
+	#servicios article{
+		margin-top: 2em;
+		margin-bottom: 1em;
+	}
+	#servicios article div div{
+		margin-top: 2em;
+	}
+#ubicacion {
+	position: absolute !important;
+    height: 100%;
+    width: 100%;
+}
+
+	#ubicacionMap {
+		height: 100%;
+	}
+
+	#ubicacionBtnNavegar {
+	    position: absolute;
+	    z-index: 500;
+	    bottom: 35px;
+	    left: 25px;
+	    border-radius: 50%;
+	    border: 2px solid rgba(229, 126, 31, 1.0);
+	    font-size: 3em;
+	    color: rgba(229, 126, 31, 1.0);
+	    background: rgba(255, 255, 255, 0.8);
+	}
+
+	#ubicacionBtnNavegar:hover {
+		cursor: pointer;
+	}
+#tarifas{
+
+}
+	#tarifas h2~p{
+		color: rgba(0,0,0,0.5);
+		font-weight: bold;
+		text-align: center;
+	}
+	#tarifas section article{
+		text-align: center;
+		background: rgba(255,255,255,1);
+		margin: 2em 0;
+		padding: 1em;
+		border: 4px solid rgba(229, 126, 31, 1.0);
+		border-radius: 0.2em;
+		box-shadow: -5px 5px 8px #333333;
+		box-sizing: border-box;
+		position: relative;
+	}
+		#tarifas section article:nth-child(2n+1){
+			-ms-transform: rotate(-2deg); /* IE 9 */
+		    -webkit-transform: rotate(-2deg); /* Safari */
+		    transform: rotate(-2deg)
+		}
+		#tarifas section article:nth-child(4){
+			-ms-transform: rotate(2deg); /* IE 9 */
+		    -webkit-transform: rotate(2deg); /* Safari */
+		    transform: rotate(2deg)
+		}
+		#tarifas section article .cero{
+			-ms-transform: rotate(2deg); /* IE 9 */
+		    -webkit-transform: rotate(2deg); /* Safari */
+		    transform: rotate(2deg)
+		}
+		#tarifas section article .cero2{
+			-ms-transform: rotate(-2deg); /* IE 9 */
+		    -webkit-transform: rotate(-2deg); /* Safari */
+		    transform: rotate(-2deg)
+		}
+		#tarifas section article h3{
+			/*background: rgba(255,128,0,1);
+			background: -moz-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,128,0,1)), color-stop(100%, rgba(255,163,72,1)));
+			background: -webkit-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -o-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: -ms-linear-gradient(top, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			background: linear-gradient(to bottom, rgba(255,128,0,1) 0%, rgba(255,163,72,1) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8000', endColorstr='#ffa348', GradientType=0 );
+			color: rgba(255, 255, 255, 1);*/
+			padding: 0.2em;
+			margin: 0 0 2em 0;
+			border-radius: 0.2em;
+			/*box-shadow: 2px 2px 8px #888888;
+			position: absolute;
+		    top: -14px;
+		    left: -15px;*/
+		}
+		#tarifas section article i{
+			font-size: 7em;
+			vertical-align: bottom;
+			color: rgba(229, 126, 31, 1.0);
+		}
+		#tarifas section article button{
+			background: rgba(229, 126, 31, 1.0);
+			color: rgba(255, 255, 255, 1);
+			padding: 0.6em 1em;
+			margin: 2em 0;
+			border-radius: 0.2em;
+			border: 0;
+			box-shadow: 2px 2px 8px #888888;
+			cursor: pointer;
+			/*position: absolute;
+		    bottom: -25px;
+		    right: -15px;*/
+		}
+		#tarifas section article button:hover{
+			background: rgba(80, 80, 80, 1);
+		}
+	#tarifas p{
+		margin: 1em 0 1em 0;
+	}
+
+
+.iconsServicios{
+	font-size: 3em;
+	text-align: center;
+	color: rgba(229, 126, 31, 1.0);
+}
+
+.iconsServicios~p{
+	font-size: 1em;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+/*
+*****************************************************************
+************************* Clases comunes ************************
+*****************************************************************
+*/
+.row{
+	align-items: center;
+	display: flex;
+}
+.col-xs-1{
+	width: 8.33333333%;
+}
+.col-xs-2{
+	width: 16.6666667%;
+}
+.col-xs-3{
+	width: 25%;
+}
+.col-xs-4{
+	width: 33.3333333%;
+}
+.col-xs-5{
+	width: 41.6666667%;
+}
+.col-xs-6{
+	width: 50%;
+}
+.col-xs-10{
+	width: 83.3333333%;
+}
+.col-xs-11{
+	width: 91.6666667%;
+}
+.col-xs-12{
+	width: 100%;
+}
+.dcolumnas-xs{
+	flex-direction: column;
+}
+.dfilas-xs{
+	flex-direction: row;
+}
+.jaround-xs{
+	justify-content: space-around;
+}
+.jbetween-xs{
+	justify-content: space-between;
+}
+.jcenter-xs{
+	justify-content: center;
+}
+.filas-xs{
+	flex-wrap: wrap;
+}
+.fstart-xs{
+	align-items: flex-start;
+}
+.fend-xs{
+	align-items: flex-end;
+}
+
+/*
+	
+	Medias
+
+*/
+
+@media (min-width: 48em) {
+	header nav ul{
+		position: relative;
+		top: 0;
+		width: 100%;
+	    margin: 0 ;
+	    background: none;
+	    border: none;
+	}
+	header nav ul li {
+		display: inline-block !important;
+		border-top: 4px solid rgba(0, 0, 0, 0);
+		border-bottom: none;
+	}
+	header nav ul li:hover, nav ul i:hover{
+		border-top: 4px solid rgba(229, 126, 31, 1.0);
+		border-bottom: none;
+	}
+	#btnHeadNav {
+		display: none !important;
+	}
+
+	/*
+	*****************************************************************
+	************************* Clases comunes ************************
+	*****************************************************************
+	*/
+	.col-sm-2{
+		width: 16.6666667%;
+	}
+	.col-sm-3{
+		width: 25%;
+	}
+	.col-sm-4{
+		width: 33.3333333%;
+	}
+	.col-sm-5{
+		width: 41.6666667%;
+	}
+	.dfilas-sm{
+		flex-direction: row;
+	}
+	.filas-sm{
+		flex-wrap: wrap;
+	}
+}
+
+@media (min-width: 75em){
+
+	/*
+	*****************************************************************
+	************************* Clases comunes ************************
+	*****************************************************************
+	*/
+	.col-lg-2{
+		width: 16.6666667%;
+	}
+	.col-lg-3{
+		width: 25%;
+	}
+	.col-lg-4{
+		width: 33.3333333%;
+	}
+}

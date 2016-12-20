@@ -12,7 +12,6 @@ header{
 		height: 4.5em;
 	}
 	header nav ul {
-		display: none !important;
 	    position: absolute;
 	    width: 50%;
 	    margin: 0 -25%;
@@ -22,6 +21,9 @@ header{
 	    z-index: 10000;
 	}
 	header nav ul li{
+		display: none;
+		width: 100%;
+		box-sizing: border-box;
 		color: @grisOscuro;
 		padding: 1em;
 		border-bottom: 4px solid rgba(0, 0, 0, 0);
@@ -31,9 +33,6 @@ header{
 	header ul li img {
 		width: 32px;
 	    height: 32px;
-	}
-	header nav ul li{
-		display: none;
 	}
 	header nav ul li:hover, header nav ul i:hover{
 		color: @naranja;

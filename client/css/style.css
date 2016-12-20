@@ -30,7 +30,7 @@ header img {
   height: 4.5em;
 }
 header nav ul {
-  display: none !important;
+  display: none;
   position: absolute;
   width: 50%;
   margin: 0 -25%;
@@ -40,6 +40,9 @@ header nav ul {
   z-index: 10000;
 }
 header nav ul li {
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
   color: #272727;
   padding: 1em;
   border-bottom: 4px solid rgba(0, 0, 0, 0);
@@ -49,9 +52,6 @@ header nav ul li {
 header ul li img {
   width: 32px;
   height: 32px;
-}
-header nav ul li {
-  display: none;
 }
 header nav ul li:hover,
 header nav ul i:hover {
@@ -166,6 +166,12 @@ validacion:before {
 }
 .fend-xs {
   align-items: flex-end;
+}
+/*
+	head.html
+*/
+.menu {
+  display: none;
 }
 /*
 	inicio.html
@@ -580,6 +586,7 @@ validacion:before {
 }
 @media (min-width: 48em) {
   header nav ul {
+    display: flex;
     position: relative;
     top: 0;
     width: 100%;
@@ -744,4 +751,5 @@ validacion:before {
 }
 .datePicker .selectable {
   color: #000;
+  cursor: pointer;
 }
