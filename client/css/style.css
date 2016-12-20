@@ -372,6 +372,10 @@ footer div {
   margin-bottom: 1em;
   padding-top: 0.5em;
 }
+#ubicacion {
+  height: 100%;
+  width: 100%;
+}
 .picker {
   width: 50%;
   padding-top: 1em;
