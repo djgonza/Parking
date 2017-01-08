@@ -46,6 +46,12 @@ class TimePicker {
 
 	}
 
+	getTime () {
+
+		return this.hours + ":" + this.minutes; 
+
+	}
+
 	createElement (picker) {
 
 		// Creamos los elementos

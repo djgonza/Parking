@@ -6,40 +6,25 @@ $(function () {
 	Parking.Router = new Router ($("main"));
 	Parking.Nav = new NavController($("header>nav"));
 	Parking.UserInfo = {
-		"Date"				: {
-			"Ini" 			: {
-				"Date"		: {
-					"Day"	: 5,
-					"Month"	: 6,
-					"Year"	: new Date().getMonth() > 6 ? new Date().getFullYear() + 1 : new Date().getFullYear()
-				},
-				"Time"		: {
-					"Hour"	: 0,
-					"Minute": 0
-				},
-			},
-			"End"			: {
-				"Date"		: {
-					"Day"	: 15,
-					"Month"	: 6,
-					"Year"	: new Date().getMonth() > 6 ? new Date().getFullYear() + 1 : new Date().getFullYear()
-				},
-				"Time"		: {
-					"Hour"	: 12,
-					"Minute": 0
-				}
-			},
+		"Date": {
+			"year"			: new Date().getMonth() < 7 ? new Date().getFullYear() : new Date().getFullYear() + 1,
+			"month"			: 6,
+			"defaultDayIni" : 6, 
+			"defaultDayEnd"	: 15,
+			"dayIni" 		: 6, 
+			"dayEnd"		: 15,
+			"timeIni"		: 0,
+			"timeEnd"		: 0
 		},
 		"Square"			: {
 			"Id"			: undefined,
-			"TypeV"			: undefined
+			"TypeV"			: "c",
+			"Zone"			: "Sol"
 		},
 		"PersonalInfo"		: {
 			"Name"			: undefined,
 			"SecondName"	: undefined
 		}
 	};
-
-	//console.log(Parking.UserInfo);
 	
 });

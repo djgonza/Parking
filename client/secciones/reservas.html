@@ -1,98 +1,8 @@
 <section id="reservas">
-	<!--<h2>Reservas</h2>-->
-	<!--<nav class="row jaround-xs">
-		<div class="seguimiento">
-			<div class="arriba FormActive"></div>
-			<div class="abajo FormActive"></div>
-			<p>Datos Personales</p>
-		</div>
-		<div class="seguimiento">
-			<div class="arriba FormDefault"></div>
-			<div class="abajo FormDefault"></div>
-			<p>Tipo Vehiculo</p>
-		</div>
-		<div class="seguimiento">
-			<div class="arriba FormDefault"></div>
-			<div class="abajo FormDefault"></div>
-			<p>Seleccionar Plaza</p>
-		</div>
-		<div class="seguimiento">
-			<div class="arriba FormDefault"></div>
-			<div class="abajo FormDefault"></div>
-			<p>Total Visitantes</p>
-		</div>
-		<div class="seguimiento">
-			<div class="arriba FormDefault"></div>
-			<div class="abajo FormDefault"></div>
-			<p>Fecha Reserva</p>
-		</div>
-		<div class="seguimiento">
-			<div class="arriba FormDefault"></div>
-			<div class="abajo FormDefault"></div>
-			<p class="centrar">Pago</p>
-		</div>
-	</nav>-->
 
 	<article>
-		<nav>
-			<label>Tipo de vehiculo</label>
-			<div>
-				<ul>
-					<li>
-						<i class="material-icons">directions_car</i>
-						<input type="radio" name="vehiculo" value="coche">
-					</li>
-					<li>
-						<i class="material-icons">motorcycle</i>
-						<input type="radio" name="vehiculo" value="moto">
-					</li>
-					<li>
-						<i class="material-icons">directions_car</i>
-						<input type="radio" name="vehiculo" value="caravana">
-					</li>
-					<li>
-						<i class="material-icons">directions_car</i>
-						<input type="radio" name="vehiculo" value="caravanaDos">
-					</li>
-				</ul>
-			</div>
-			<!--<div class="apartados row filas-xs">
-				<span>¿Donde desea aparcar?</span>
-				<ul class="row filas-xs">
-					<li>
-						<i class="material-icons">wb_sunny</i>
-						<input type="radio" name="sol" value="sol">
-					</li>
-					<li>
-						<i class="material-icons">cloud</i>
-						<input type="radio" name="sombra" value="sol">
-					</li>
-				</ul>
-			</div>-->
-			<label>Fecha y hora de entrada</label>
-			<div>
-				<div class="picker">
-					<i class="material-icons col-xs-2">today</i>
-					<input id="reservasDateIni" class="col-xs-4" type="text" name="date">
-				</div>
-				<div class="picker">
-					<i class="material-icons col-xs-2">query_builder</i>
-					<input id="reservasTimeIni" class="col-xs-4" type="text" name="time" value="00">
-				</div>
-			</div>
-			<label>Fecha y hora de salida</label>
-			<div>
-				<div class="picker">
-					<i class="material-icons col-xs-2">today</i>
-					<input id="reservasDateEnd" class="col-xs-4" type="text" name="date">
-				</div>
-				<div class="picker">
-					<i class="material-icons col-xs-2">query_builder</i>
-					<input id="reservasTimeEnd" class="col-xs-4" type="text" name="time">
-				</div>
-			</div>
-		</nav>
 		<canvas id="MapaSeleccionPlazas"></canvas>
+		<label id="msj"></label>
 	</article>
 
 	<article style="display: none">
@@ -118,62 +28,6 @@
 		<div>
 			<input type="text" name="numPersonas" placeholder="Numero de personas">
 		</div>
-		<!--<object data="" type="input">
-			<input type="text" name="nombre" placeholder="Nombre" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minLength" value="3">
-			<param name="maxLength" value="20">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="apellidoUno" placeholder="Primer Apellido" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minLength" value="3">
-			<param name="maxLength" value="20">
-		</object>
-		<object data="" type="input">
-			<select name="tipoDocumento" id="">
-				<option value=""></option>
-			</select>
-			<input type="text" name="dni" placeholder="DNI" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="regExp" value="dni">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="mail" placeholder="Mail" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="regExp" value="mail">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="tlf" placeholder="Telefono" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="regExp" value="tlf">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="nPersonas" placeholder="Nº total de personas" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minNumber" value="5">
-		</object>
-		<object data="" type="input">
-			<p>¿Viaja con menores de 12 años?</p>
-			<input type="radio" name="niños" value="Si"/>Si
-			<input type="radio" name="niños" value="No" checked="checked"/>No
-			<input type="text" name="nPersonas" placeholder="Nº total de personas" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minNumber" value="5">
-		</object>
-		<object data="" type="input">
-			<input type="text" name="nNinos" placeholder="¿Cuántos?" />
-			<i class="material-icons iconsInput"></i>
-			<param name="required" value="true">
-			<param name="minNumber" value="0">
-		</object>-->
 	</article>
 
 	<article style="display: none;">
@@ -184,15 +38,5 @@
 	<nav class="row jbetween-xs">
 		<i id="btnAnterior" class="material-icons">arrow_back</i>
 		<i id="btnSiguiente" class="material-icons">arrow_forward</i>
-		<!--<div id="anterior" class="seguimiento">
-			<div class="arriba2 FormActive"></div>
-			<div class="abajo2 FormActive"></div>
-			<p class="centrar">Anterior</p>
-		</div>
-		<div id="siguiente" class="seguimiento">
-			<div class="arriba FormActive"></div>
-			<div class="abajo FormActive"></div>
-			<p class="centrar">Siguiente</p>
-		</div>-->
 	</nav>
 </section>

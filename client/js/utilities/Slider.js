@@ -11,8 +11,10 @@ class Slider {
 		this.fadeTime;
 		this.state = 0;
 
-		this.loadParam();
-		this.init();
+		if($(window).width() > 1024) {
+			this.loadParam(); 
+			this.init();
+		}
 
 	}
 

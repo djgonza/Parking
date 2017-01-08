@@ -14,9 +14,11 @@ class ControllerReservas extends SectionController {
 	init (controller) {
 
 		if(!this.status) {
+
 			setTimeout(function () {
 				controller.init(controller);
 			}, 500);
+
 		}else{
 			
 			this.mapa = new MapSelectioSquares(this.element.find("canvas"));
@@ -30,12 +32,48 @@ class ControllerReservas extends SectionController {
 
 		//Revisar
 		$("#btnSiguiente").click(function () {
-			controller.setStep (controller.step++ + 1);
+
+			if(controller.validateStep(controller.step)){
+				controller.step++;
+				controller.setStep (controller.step);
+			}
+			
 		});
 
 		$("#btnAnterior").click(function () {
-			controller.setStep (controller.step-- - 1);
+			controller.step--;
+			controller.setStep (controller.step);
 		});
+
+
+	}
+
+	validateStep (step) {
+
+		console.log(step);
+
+		switch (step) {
+			
+			case 0:
+
+				if(this.mapa.value == undefined) {
+					this.mapa.setMensaje ("Selecciona una plaza para continuar");
+					this.mapa.showMensaje ();
+					return false;
+				} 
+
+				this.mapa.hideMensaje ();
+				return true;
+
+			break;
+			case 1:
+
+			break;
+			case 2:
+
+			break;
+
+		}
 
 	}
 
@@ -44,6 +82,12 @@ class ControllerReservas extends SectionController {
 		this.element.children("article").hide();
 		$(this.element.children("article")[step]).show();
 
+	}
+
+	// Override from father
+	show () {
+		this.element.show();
+		this.mapa.print();
 	}
 
 }

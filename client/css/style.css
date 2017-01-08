@@ -197,6 +197,7 @@ header {
   min-height: 4.5em;
   height: 4.5em;
   max-height: 4.5em;
+  box-shadow: 0px 3px 5px #ccc;
 }
 header img {
   height: 100%;
@@ -221,9 +222,6 @@ header nav ul li {
 header ul li img {
   width: 32px;
   height: 32px;
-}
-header nav ul li {
-  display: none;
 }
 header nav ul li:hover,
 header nav ul i:hover {
@@ -260,27 +258,33 @@ header nav ul i:active {
 }
 html,
 body {
+  font-family: 'Roboto', sans-serif;
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
   min-height: 100%;
   height: 100%;
+  max-height: 100%;
 }
 body {
   display: flex;
   flex-direction: column;
-  min-height: 600px;
   width: 100%;
-  background: #ffffff;
-  background: -moz-linear-gradient(-45deg, #ffffff 0%, #ffffff 36%, #c2c2c2 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, #ffffff), color-stop(36%, #ffffff), color-stop(100%, #c2c2c2));
-  background: -webkit-linear-gradient(-45deg, #ffffff 0%, #ffffff 36%, #c2c2c2 100%);
-  background: -o-linear-gradient(-45deg, #ffffff 0%, #ffffff 36%, #c2c2c2 100%);
-  background: -ms-linear-gradient(-45deg, #ffffff 0%, #ffffff 36%, #c2c2c2 100%);
-  background: linear-gradient(160deg, #ffffff 0%, #ffffff 36%, #c2c2c2 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#c2c2c2', GradientType=1);
+  background-color: #EEEDED;
 }
 main {
   padding: 1em;
   display: flex;
   height: 100%;
+}
+section {
+  background-color: #fff;
+  box-shadow: 0px 14px 41px -6px #707070;
+  overflow: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
+  width: 100%;
 }
 footer {
   background: #272727;
@@ -294,31 +298,33 @@ footer div {
 }
 .btn {
   color: white;
-  background-color: #e57e1f;
   padding: 0.5em 1em 0.8em 1em;
   border: none;
-  -webkit-box-shadow: -2px -2px 0px 0px rgba(50, 50, 50, 0.25);
-  -moz-box-shadow: -2px -2px 0px 0px rgba(50, 50, 50, 0.25);
-  box-shadow: -2px -2px 0px 0px rgba(50, 50, 50, 0.25);
+  border-radius: 3px;
+  box-shadow: 0px 5px 10px 0px #ccc;
+  background-color: #e57e1f;
   font-size: 1em;
-}
-#inicio {
-  background-color: #eeeeee;
-  padding: 1em;
 }
 #inicio label {
   color: #e57e1f;
   width: 100%;
-  padding-top: 1em;
 }
 #inicio select {
   width: 100%;
-  padding-top: 1em;
+  padding: 0.5em;
   font-size: 1em;
+  margin: 0.5em 0;
+  border-radius: 0;
+  border: 1px solid #EEEDED;
+  color: #707070;
+  background-color: #f8f8f8;
+  height: 45px;
 }
 #inicio button {
-  margin-left: 50%;
+  margin-left: 60%;
   margin-bottom: 1em;
+  width: 40%;
+  max-width: 200px;
 }
 #inicio h3 {
   color: #e57e1f;
@@ -326,6 +332,9 @@ footer div {
 }
 #inicio article p {
   color: #797c80;
+}
+#inicio .picker {
+  margin-bottom: 1em;
 }
 #reservas,
 #reservas article {
@@ -372,9 +381,54 @@ footer div {
   margin-bottom: 1em;
   padding-top: 0.5em;
 }
+#reservas #msj {
+  position: absolute;
+  top: 5%;
+  width: 50%;
+  right: 25%;
+  text-align: center;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 0.5em;
+  border: 1px solid #ccc;
+}
 #ubicacion {
   height: 100%;
   width: 100%;
+  position: relative;
+  padding: 0;
+}
+#ubicacion i {
+  position: absolute;
+  z-index: 100;
+  bottom: 30px;
+  left: 21px;
+  font-size: 3em;
+  color: #e57e1f;
+}
+#servicios h1 {
+  text-align: center;
+  color: #e57e1f;
+  font-size: 3em;
+  text-decoration: underline;
+}
+#servicios h3 {
+  text-align: center;
+  color: #e57e1f;
+  font-size: 2em;
+  padding-bottom: 1em;
+}
+#servicios article {
+  padding: 1em;
+}
+#servicios article div div {
+  flex-direction: column;
+  margin: 1em 0;
+  box-sizing: border-box;
+}
+#servicios article div div i {
+  color: #e57e1f;
+  font-size: 3em;
 }
 .picker {
   width: 50%;
@@ -382,17 +436,22 @@ footer div {
   clear: both;
   position: relative;
   display: flex;
-  justify-content: space-between;
 }
 .picker input {
   width: 75%;
-  background-color: #eeeeee;
-  border: none;
+  background-color: #f8f8f8;
   font-size: 1em;
+  border: 1px solid #EEEDED;
+  color: #707070;
+  padding: 0.5em;
+}
+.picker i {
+  font-size: 1.8em;
+  margin: 0.3em 0.3em 0.3em 0;
 }
 .timePicker {
   position: absolute;
-  top: 0;
+  top: 15px;
   right: 0;
   z-index: 100;
 }
@@ -400,6 +459,7 @@ footer div {
   display: block;
   font-weight: bold;
   font-size: 1.5em;
+  margin: 0;
 }
 .datePicker {
   padding: 1em;
@@ -407,7 +467,8 @@ footer div {
   border-radius: 1em;
   position: absolute;
   z-index: 100;
-  top: 100%;
+  top: 87%;
+  box-shadow: 2px 2px 8px #ccc;
 }
 .datePicker table caption {
   color: #e57e1f;
@@ -420,4 +481,15 @@ footer div {
 }
 .datePicker .selectable {
   color: #000;
+}
+.slider img {
+  display: none;
+  max-width: 100%;
+  margin-bottom: 2em;
+  box-shadow: 0px 14px 41px -6px #707070;
+}
+@media all and (min-width: 1024px) {
+  .slider img {
+    display: block;
+  }
 }

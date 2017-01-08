@@ -1,5 +1,5 @@
 <section id="inicio">
-	<!--<object id="slider" class="slider">
+	<object id="slider" class="slider">
 		<img src="/client/img/bg1.jpg">
 		<param name="intervalTime" value="5000">
 		<param name="fadeTime" value="1000">
@@ -7,37 +7,39 @@
 		<param name="img" value="/client/img/bg2.jpg">
 		<param name="img" value="/client/img/bg3.jpg">
 		<param name="img" value="/client/img/bg4.jpg">
-	</object>-->
+	</object>
 	<article class="">
 		<div>
-			<label>DATOS VEHICULO</label>
+			<label>Datos del Vehiculo</label>
 			<select placeholder="Selecciona un tipo">
-				<option value="Moto">MOTO</option>
-				<option value="Coche">COCHE</option>
-				<option value="Furgoneta">FURGONETA</option>
-				<option value="Autocaravana">AUTOCARAVANA</option>
+				<option value="c">COCHE</option>
+				<option value="m">MOTO</option>
+				<option value="f">FURGONETA</option>
+				<option value="a">AUTOCARAVANA</option>
 			</select>
 		</div>
-		<div class="row filas-xs">
-			<label>Fecha y Hora de Entrada</label>
-			<div class="picker">
-				<i class="material-icons">today</i>
-				<input type="text" name="date">
+		<div id="picker">
+			<div class="row filas-xs">
+				<label>Fecha y Hora de Entrada</label>
+				<div class="picker">
+					<i class="material-icons">today</i>
+					<input type="text" name="date">
+				</div>
+				<div class="picker">
+					<i class="material-icons" style="margin-left: 0.3em">query_builder</i>
+					<input type="text" name="time" value="00">
+				</div>
 			</div>
-			<div class="picker">
-				<i class="material-icons">query_builder</i>
-				<input type="text" name="time" value="00">
-			</div>
-		</div>
-		<div class="apartados row filas-xs">
-			<label>Fecha y Hora de Salida</label>
-			<div class="picker">
-				<i class="material-icons">today</i>
-				<input type="text" name="date">
-			</div>
-			<div class="picker">
-				<i class="material-icons">query_builder</i>
-				<input type="text" name="time">
+			<div class="row filas-xs">
+				<label>Fecha y Hora de Salida</label>
+				<div class="picker">
+					<i class="material-icons">today</i>
+					<input type="text" name="date">
+				</div>
+				<div class="picker">
+					<i class="material-icons" style="margin-left: 0.3em">query_builder</i>
+					<input type="text" name="time">
+				</div>
 			</div>
 		</div>
 		<div>

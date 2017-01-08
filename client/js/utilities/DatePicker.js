@@ -2,11 +2,15 @@
 
 class DatePicker {
 
-	constructor (father, month, dayIni, dayEnd) {
-		
+	constructor (father, year, month, dayIni, dayEnd, day) {
+
 		this.element;
 		this.father = $(father);
+		// Define la fecha
+		this.year = year;
 		this.month = month;
+		this.day = day;
+		// Define los limites
 		this.dayIni = dayIni;
 		this.dayEnd = dayEnd;
 		this.init();
@@ -15,18 +19,13 @@ class DatePicker {
 
 	init () {
 
-		this.updateInput (this.dayIni, this.month, new Date().getFullYear());
 		this.initEvents (this);
 		this.createElement (this);
+		this.updateInput ();
 
 	}
 
 	initEvents (picker) {
-
-		// Evita edicion del input
-		this.father.on ("keypress keyup keydown paste cut", function (event) {
-			event.preventDefault();
-		});
 
 		// Evento para el foco
 		this.father.focusin(function (event) {
@@ -35,75 +34,80 @@ class DatePicker {
 			event.stopPropagation();
 		});
 
-		// Click fuera del elemento
-		$("html").click (function (event) {
-			if(event.target != picker.father[0]){
-				picker.hide();
-				event.preventDefault;
-			}
+		this.father.click (function (event) {
+			picker.show();
 		});
 
 	}
 
+	setDayIni (day) {
+		this.dayIni = day;
+		this.destroyElement();
+		this.createElement (this);
+	}
+	setDayEnd (day) {
+		this.dayEnd = day;
+		this.destroyElement();
+		this.createElement (this);
+	}
+
+	getDay (){
+
+		return this.day;
+
+	}
+
+
+
+	destroyElement () {
+		this.element.remove();
+	}
+
 	createElement (picker) {
 
-		// Inicializamos la fecha
-		var date = new Date();
-		if(date.getMonth() > this.month){
-			date.setFullYear(date.getFullYear() + 1);
-		}
-		date = new Date(date.getFullYear(), this.month, 0);
+		var date = new Date(this.year, this.month);
 
 		// Creamos los elementos
 		this.element = $("<div>").addClass("datePicker");
 
 		// Creamos la tabla
-		var table = $("<table>").append($("<caption>").html("Julio " + date.getFullYear()));
-		//table.append($("<tr>").html("<th>Lu</th><th>Ma</th><th>Mi</th><th>Ju</th><th>Vi</th><th>Sa</th><th>Do</th>"));
+		var table = $("<table>").append($("<caption>").html("Julio " + this.year));
 
 		// Creamos las celdas del calendario
-		var dayWeekIni = date.getDay();
-		var dayPrinted = 1;
-		var totalPrinted = 0;
-		var tr;
+		var tr = $("<tr>");
+		table.append(tr);
+		var daysPrinted = 0;
 
-		while (dayPrinted <= date.getDate() + 1){
+		for (var i = -date.getDay() + 2; i <= 31; i++) {
 
 			// Rows
-			if(totalPrinted % 7 == 0){
+			if(daysPrinted % 7 == 0){
 				tr = $("<tr>");
 				table.append(tr);
 			}
 
-			// Days
-			if(dayWeekIni > 0){
-				dayWeekIni--;
-				tr.append($("<th>"));
-				totalPrinted++;
-			}else{
+			var th = $("<th>").html(i > 0 ? i : "");
 
-				var th = $("<th>").html(dayPrinted);
-				
-				// Aladimos los eventos
-				if(dayPrinted >= this.dayIni && dayPrinted <= this.dayEnd){
+			// Selectables days
+			if(i >= this.dayIni && i <= this.dayEnd && i > 0){
 
-					th.addClass("selectable");
-					th.click(function (event) {
-						picker.updateInput($(this).text(), picker.month + 1, date.getFullYear());
-					});
-				}
-
-				tr.append(th);
-				totalPrinted++;
-				dayPrinted++;
+				th.addClass("selectable");
+				th.click(function (event) {
+					picker.day = $(this).text();
+					picker.father.trigger("changeDay", [$(this).text()]);
+					picker.updateInput ();
+				});
 
 			}
 
+			tr.append(th);
+			daysPrinted ++;
+
 		}
 
-		// Añadimos lla tabla
+		// Añadimos la tabla
 		this.element.append(table);
-		
+
 		// Añadimos al input
 		this.father.after (this.element.hide());
 
@@ -117,9 +121,8 @@ class DatePicker {
 		this.element.hide();
 	}
 
-	updateInput (day, month, year) {
-		this.father.val(day + "/" + month + "/" + year);
+	updateInput () {
+		this.father.val(this.day + "/" + this.month + "/" + this.year);
 	}
-
 
 }

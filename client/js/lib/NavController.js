@@ -15,13 +15,15 @@ class NavController {
 
 			$(element).click(function () {
 				Parking.Router.navigate($(element).text().toLowerCase());
+				if(nav.element.children("i").is(":visible")){
+					nav.element.children("ul").hide();
+				}
 			});
 
 		});
 
 		this.element.children("i").click (function () {
 			nav.element.children("ul").toggle();
-			nav.element.children("ul").children("li").toggle();
 		});
 
 	}

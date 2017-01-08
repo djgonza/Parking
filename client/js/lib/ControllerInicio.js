@@ -6,6 +6,7 @@ class ControllerInicio extends SectionController {
 		
 		super("inicio", father);
 
+		this.picker;
 		this.slider;
 		
 		this.init(this);
@@ -19,7 +20,8 @@ class ControllerInicio extends SectionController {
 				controller.init(controller);
 			}, 500);
 		}else{
-			//this.slider = new Slider(this.element.children("object"));
+			this.slider = new Slider(this.element.children("object"));
+			this.picker = new Picker($("#picker"), this.element);
 			this.initEvents(this);
 		}
 
@@ -32,41 +34,18 @@ class ControllerInicio extends SectionController {
 			controller.validateForm ();
 		});
 
-		/*
-
-			Crea el elemento calendario o time picker
-
-		*/
-		this.element.find("input").each(function (i) {
-
-			switch (this.name) {
-				case "date": 
-					new DatePicker(this, 6, 5, 15);
-				break;
-				case "time": 
-					new TimePicker(this, 0, 12);
-				break;
-			}
-
-		});
-
 	}
 
 	validateForm () {
 
-		//Revisar cuando pueda
-		var dateIni = $(this.element.find("input")[0]).val().split("/");
-		var timeIni = $(this.element.find("input")[1]).val().split(":");
-		var dateEnd = $(this.element.find("input")[2]).val().split("/");
-		var timeEnd = $(this.element.find("input")[3]).val().split(":");
+		Parking.UserInfo.Date.dayIni = this.picker.childrens[0].getDay();
+		Parking.UserInfo.Date.dayEnd = this.picker.childrens[2].getDay();
 
-		Parking.UserInfo.Date.Ini.Date.Day = dateIni[0];
-		Parking.UserInfo.Date.Ini.Time.Hour = timeIni[0];
-		Parking.UserInfo.Date.Ini.Time.Minute = timeIni[1];
+		Parking.UserInfo.Date.timeIni = this.picker.childrens[1].getTime();
+		Parking.UserInfo.Date.timeEnd = this.picker.childrens[3].getTime();
 
-		Parking.UserInfo.Date.End.Date.Day = dateEnd[0];
-		Parking.UserInfo.Date.End.Time.Hour = timeEnd[0];
-		Parking.UserInfo.Date.End.Time.Minute = timeEnd[1];
+		Parking.UserInfo.Square.TypeV = $(this.element.find("select")[0]).find(":selected")[0].value;
+		Parking.UserInfo.Square.Zone = $(this.element.find("select")[1]).find(":selected")[0].value;
 
 		Parking.Router.navigate("reservas");
 

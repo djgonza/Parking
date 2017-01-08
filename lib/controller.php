@@ -6,7 +6,7 @@ class Controller {
     const FILE_HEAD = "client/secciones/head.html";
     const FILE_FOOTER = "client/secciones/footer.html";
     const DIR_ERROR404 = "client/secciones/404.html";
-
+    private $router;
 
     public function Controller(){
 
@@ -17,27 +17,34 @@ class Controller {
 
         }*/
 
+        //var_dump($_SERVER);
+
+        /*if($_SERVER["REQUEST_URI"] != "/" || !isset($_SERVER['HTTPS'])){
+            //echo $_SERVER['HTTP_X_REQUESTED_WITH'];
+            header('Location: https://'.$_SERVER["HTTP_HOST"]);
+            return;
+        }*/
+
         // Peticion Default
         if (empty($_GET)) {
             $this -> getClientApp();
-            //break;
+            return;
         }
         // Peticion lista secciones
         if (isset($_GET["getListSections"])) {
             $this -> getListSections();
-            //break;
+            return;
         }
         // Peticion html seccion
         if (isset($_GET["getSection"])) {
             $this -> getSection($_GET["getSection"]);
-            //break;
+            return;
         }
         // Peticion lista plazas libres
-        if (isset($_GET["getFreePlaces"])) {
-            $this -> getFreePlaces();
-            //break;
+        if (isset($_GET["getAvailableSquares"])) {
+            $this -> getAvailableSquares($_GET["getAvailableSquares"]["ini"], $_GET["getAvailableSquares"]["end"]);
+            return;
         }
-        
 
     }
 
@@ -80,9 +87,15 @@ class Controller {
 
 
     // Envia las plazas libres
-    private function getFreePlaces($horaIni, $horaFin) {
+    private function getAvailableSquares($dateIni, $dateFin) {
 
-        echo "Reciviendo";
+        require_once "lib/ConnectDB.php";
+        
+        $db = new ConnectDB();
+
+        echo json_encode($db->listAvailableSquares($dateIni, $dateFin));
+
+        $db -> desconnection();
 
     }
 

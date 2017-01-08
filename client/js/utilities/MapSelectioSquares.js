@@ -20,6 +20,12 @@ class MapSelectioSquares {
 			"x": 0,
 			"y": 0
 		};
+		// Mouse control
+		this.mouse = {
+			"status": false,
+			"x": 0,
+			"y": 0
+		}
 		// Print Control
 		this.printControl = {
 			"x": 0,
@@ -29,19 +35,8 @@ class MapSelectioSquares {
 		this.squaresInfo;
 		// Plazas validas
 		this.squaresValid;
-		// Fecha entrada
-		this.dateIni = {
-			"date": 0,
-			"time": 0
-		}
-		// Fecha Salida
-		this.dateEnd = {
-			"date": 0,
-			"time": 0
-		}
-
-
-
+		// Mensaje
+		this.mensaje = this.element.next().hide();
 
 		this.init(this);
 
@@ -51,29 +46,18 @@ class MapSelectioSquares {
 
 	init (map) {
 
-		this.initInputs ();
 		this.loadSquares (this);
 		this.initEvents (this);
 		this.setCanvasDimension ();
-		this.print ();
+		//this.print ();
 
-	}
-
-	initInputs () {
-
-		this.dateIni.date = $("#reservasDateIni");
-		new DatePicker($("#reservasDateIni"), 6, 5, 15);
-		this.dateIni.date = $("#reservasDateEnd");
-		new DatePicker($("#reservasDateEnd"), 6, 5, 15);
-		this.dateEnd.time = $("#reservasTimeIni");
-		new TimePicker($("#reservasTimeIni"), 0, 12);
-		this.dateEnd.time = $("#reservasTimeEnd");
-		new TimePicker($("#reservasTimeEnd"), 0, 12);
+		this.loadValidSquares (this, this.getDateIni (), this.getDateEnd ());
 
 	}
 
 	initEvents (map) {
 
+		// Touches
 		this.element[0].addEventListener("touchstart", function (event) {
 			
 			map.setTouch (event.touches);
@@ -97,18 +81,34 @@ class MapSelectioSquares {
 		this.element[0].addEventListener("touchend", function (event) {
 			map.print();
 		}, false);
+		// Fin
 
-		/*this.element.mousedown(function (event) {
-			console.log("down", event);
+		// Mouse
+		this.element.mousedown(function (event) {
+			map.mouse.status = true;
+			map.mouse.x = event.clientX;
+			map.mouse.y = event.clientY;
 		});
 
 		this.element.mousemove(function (event) {
-			console.log("move", event);
+			
+			if(map.mouse.status){
+				map.setPrintControl(
+					map.mouse.x - event.clientX,
+					map.mouse.y - event.clientY
+				);
+				map.mouse.x = event.clientX;
+				map.mouse.y = event.clientY;
+				event.preventDefault();
+				map.print();
+			}
+
 		});
 
 		this.element.mouseup(function (event) {
-			console.log("up" ,event);
-		});*/
+			map.mouse.status = false;
+		});
+		// Fin
 
 		this.element[0].addEventListener("click", function (event) {
 			map.selectSquare (map, event.layerX, event.layerY);
@@ -121,19 +121,83 @@ class MapSelectioSquares {
 
 	}
 
+	setMensaje (mensaje) {
+		this.mensaje.text(mensaje);
+	}
+
+	showMensaje () {
+		this.mensaje.show();
+	}
+
+	hideMensaje () {
+		this.mensaje.hide();
+	}
+
+	getDateIni () {
+
+		var date = Parking.UserInfo.Date;
+		return date.year +
+			   "-" + 
+			   date.month + 
+			   "-" + 
+			   date.dayIni + 
+			   " " + 
+			   date.timeIni;
+
+	}
+
+	getDateEnd () {
+
+		var date = Parking.UserInfo.Date;
+		return date.year +
+			   "-" + 
+			   date.month + 
+			   "-" + 
+			   date.dayIni + 
+			   " " + 
+			   date.timeEnd;
+
+	}
+
 	// Lee la info de las plazas
 	loadSquares (map) {
 
 		$.getJSON("client/js/json/squares.json", function(json) {
 		    map.squaresInfo = json;
-		}).done(function() {
-			map.printAllSquares (map);
 		});
+		/*.done(function() {
+			map.printAllSquares (map);
+		});*/
 
 	}
 
 	// Lee las plazas disponibles
-	loadValidSquares () {
+	loadValidSquares (map, dateIni, dateEnd) {
+
+		$.ajax({
+
+			url: "index.php",
+			data: { 
+				"getAvailableSquares": {
+					"ini": dateIni,
+					"end": dateEnd
+				}
+			},
+			cache: false,
+			type: "GET",
+			success: function(response) {
+
+				map.squaresValid = JSON.parse(response);
+				map.print ();
+
+			},
+			error: function(xhr) {
+				
+				alert("Error al pedir seccion");
+
+			}
+
+		});
 
 	}
 
@@ -141,6 +205,11 @@ class MapSelectioSquares {
 
 		this.canvasW = this.element[0].width = this.element.width() < this.mapW ? this.element.width() : this.mapW;
 		this.canvasH = this.element[0].height = this.element.height() < this.mapH ? this.element.height() : this.mapH;
+
+		/*console.log(this.canvasW, this.canvasH);
+
+		this.mapW = this.element[0].width;
+		this.mapH = this.element[0].height;*/
 
 	}
 
@@ -244,14 +313,53 @@ class MapSelectioSquares {
     	this.ctx.stroke();
     	this.ctx.fill();
 
+		// Color linea
+		this.ctx.strokeStyle = "#F7931E";
+		// Color relleno
+		this.ctx.fillStyle = "#F7931E";
+		
+		this.ctx.beginPath();
+
+ 		this.ctx.moveTo(422 - this.printControl.x, 100 - this.printControl.y);
+ 		this.ctx.lineTo(432 - this.printControl.x, 128 - this.printControl.y);
+ 		this.ctx.lineTo(442 - this.printControl.x, 100 - this.printControl.y);
+ 		this.ctx.lineTo(422 - this.printControl.x, 100 - this.printControl.y);
+ 		this.ctx.fill();
+ 		this.ctx.stroke();
+
+ 		this.ctx.closePath();
+    	
+    	this.ctx.beginPath();
+ 		this.ctx.arc(432 - this.printControl.x, 100 - this.printControl.y, 10.5, 0, 2 * Math.PI, false);
+ 		this.ctx.stroke();
+    	this.ctx.fill();
+    	this.ctx.closePath();
+    	
+    	this.ctx.fillStyle = "#4D4D4D";
+
+    	this.ctx.beginPath();
+    	this.ctx.arc(432 - this.printControl.x, 100 - this.printControl.y, 7, 0, 2 * Math.PI, false);
+    	this.ctx.fill();
+    	this.ctx.closePath();
+
+    	this.ctx.fillStyle = "#F7931E";
+    	this.ctx.font = "16px sans-serif";
+    	this.ctx.fillText(
+    		"Mariana Sanz", 
+    		385 - this.printControl.x, 
+    		150 - this.printControl.y
+    	);
+
+
 	}
 
 	// Pinta todas las plazas
 	printAllSquares (map) {
 
-		$.each(this.squaresInfo, function (code, square) {
-			//console.log(i, plaza);
-			map.printSquare(code, square);
+		$.each(this.squaresValid, function (code, square) {
+			if(square[0].toLowerCase().charAt(0) == Parking.UserInfo.Square.TypeV){
+				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()]);
+			}	
 		});
 
 	}
@@ -270,13 +378,13 @@ class MapSelectioSquares {
     	);
 
     	// Texto
-    	/*this.ctx.fillStyle = "#fff";
+    	this.ctx.fillStyle = "#fff";
     	this.ctx.font = "16px sans-serif";
     	this.ctx.fillText(
     		code, 
     		square.x - this.printControl.x + (square.width / 2) - 6, 
     		square.y - this.printControl.y + (square.height / 2) + 6
-    	);*/
+    	);
 
 	}
 
@@ -297,7 +405,7 @@ class MapSelectioSquares {
 			var yMax = square.y + square.height;
 
 			if(x > xMin && x < xMax && y > yMin && y < yMax) {
-				map.value = map.value == code ? undefined : code;
+				map.value = code;
 				map.print();
 				return false;
 			}
