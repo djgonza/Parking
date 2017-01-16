@@ -81,7 +81,7 @@ class MapSelectioSquares {
 		this.element[0].addEventListener("touchend", function (event) {
 			map.print();
 		}, false);
-		// Fin
+		// Fin Touches
 
 		// Mouse
 		this.element.mousedown(function (event) {
@@ -108,7 +108,7 @@ class MapSelectioSquares {
 		this.element.mouseup(function (event) {
 			map.mouse.status = false;
 		});
-		// Fin
+		// Fin Mouse
 
 		this.element[0].addEventListener("click", function (event) {
 			map.selectSquare (map, event.layerX, event.layerY);
@@ -118,6 +118,18 @@ class MapSelectioSquares {
 			map.setCanvasDimension ();
 			map.print();
 		});
+
+		// Zoom
+		/*this.element[0].addEventListener('gestureend', function(e) {
+			if (e.scale < 1.0) {
+				// User moved fingers closer together
+				console.log("<", e);
+			} else if (e.scale > 1.0) {
+				// User moved fingers further apart
+				console.log(">", e);
+			}
+		}, false);*/
+		// Fin Zoom
 
 	}
 
@@ -358,17 +370,28 @@ class MapSelectioSquares {
 
 		$.each(this.squaresValid, function (code, square) {
 			if(square[0].toLowerCase().charAt(0) == Parking.UserInfo.Square.TypeV){
-				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()]);
+				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()], true);
+			}else{
+				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()], false);
 			}	
 		});
 
 	}
 
 	// Pinta una plaza
-	printSquare (code, square) {
+	printSquare (code, square, selectable) {
 
     	this.ctx.lineWidth = 1;
-    	this.ctx.fillStyle = this.value == code ? "#0c3e8e" : square.color;
+
+    	if(selectable) {
+    		this.ctx.fillStyle = square.color;
+    	}else{
+    		this.ctx.fillStyle = "#aaa";
+    	}
+
+    	if(this.value == code){
+    		this.ctx.fillStyle = "#0c3e8e";
+    	}
 
     	this.ctx.fillRect(
     		square.x - this.printControl.x, 
@@ -404,10 +427,12 @@ class MapSelectioSquares {
 			var xMax = square.x + square.width;
 			var yMax = square.y + square.height;
 
-			if(x > xMin && x < xMax && y > yMin && y < yMax) {
-				map.value = code;
-				map.print();
-				return false;
+			if(code.toLowerCase().charAt(0) == Parking.UserInfo.Square.TypeV){
+				if(x > xMin && x < xMax && y > yMin && y < yMax) {
+					map.value = code;
+					map.print();
+					return false;
+				}
 			}
 
 		});

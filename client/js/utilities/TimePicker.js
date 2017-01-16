@@ -97,8 +97,12 @@ class TimePicker {
 			this.hours ++;
 		}
 
-		if(this.hours >= this.endTime) {
+		/*if(this.hours >= this.endTime) {
 			this.hours = this.startTime;
+		}*/
+
+		if(this.hours == 24) {
+			this.hours = 0;
 		}
 
 		this.updateInput();
@@ -112,8 +116,8 @@ class TimePicker {
 		if(this.minutes < 0){
 			this.minutes = 30;
 			this.hours--;
-			if(this.hours <= this.startTime) {
-				this.hours = this.endTime;
+			if(this.hours == -1) {
+				this.hours = 23;
 			}
 
 		}

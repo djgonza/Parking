@@ -41,6 +41,10 @@ class ConnectDB {
 
 	}
 
+	function insertNew () {
+
+	}
+
 }
 
 
