@@ -7,8 +7,12 @@ class ControllerReservas extends SectionController {
 		super("reservas", father);
 		this.mapa;
 		this.step = 0;
+		this.validator;
+
+		
 
 		this.init(this);
+
 	}
 
 	init (controller) {
@@ -23,6 +27,7 @@ class ControllerReservas extends SectionController {
 			
 			this.mapa = new MapSelectioSquares(this.element.find("canvas"));
 			this.initEvents(this);
+			this.validator = new ValidateForm(this.element.find("input"), this.element.find("span"));
 
 		}
 
@@ -35,6 +40,9 @@ class ControllerReservas extends SectionController {
 
 			if(controller.validateStep(controller.step)){
 				controller.step++;
+				if(controller.step >= 3){
+					controller.step--;
+				}
 				controller.setStep (controller.step);
 			}
 			
@@ -42,6 +50,9 @@ class ControllerReservas extends SectionController {
 
 		$("#btnAnterior").click(function () {
 			controller.step--;
+			if(controller.step < 0){
+				controller.step = 0;
+			}
 			controller.setStep (controller.step);
 		});
 
@@ -68,8 +79,16 @@ class ControllerReservas extends SectionController {
 			break;
 			case 1:
 
+				if(!this.validator.validate()){
+					return false;
+				}
+
+				return true;
+
 			break;
 			case 2:
+
+				//Pagos
 
 			break;
 

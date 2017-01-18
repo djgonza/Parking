@@ -218,11 +218,6 @@ class MapSelectioSquares {
 		this.canvasW = this.element[0].width = this.element.width() < this.mapW ? this.element.width() : this.mapW;
 		this.canvasH = this.element[0].height = this.element.height() < this.mapH ? this.element.height() : this.mapH;
 
-		/*console.log(this.canvasW, this.canvasH);
-
-		this.mapW = this.element[0].width;
-		this.mapH = this.element[0].height;*/
-
 	}
 
 	setTouch (touch) {
