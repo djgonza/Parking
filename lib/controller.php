@@ -10,21 +10,6 @@ class Controller {
 
     public function Controller(){
 
-        /*
-            Peticiones Ajax
-        */
-        /*if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-
-        }*/
-
-        //var_dump($_SERVER);
-
-        /*if($_SERVER["REQUEST_URI"] != "/" || !isset($_SERVER['HTTPS'])){
-            //echo $_SERVER['HTTP_X_REQUESTED_WITH'];
-            header('Location: https://'.$_SERVER["HTTP_HOST"]);
-            return;
-        }*/
-
         // Peticion Default
         if (empty($_GET)) {
             $this -> getClientApp();
@@ -43,6 +28,11 @@ class Controller {
         // Peticion lista plazas libres
         if (isset($_GET["getAvailableSquares"])) {
             $this -> getAvailableSquares($_GET["getAvailableSquares"]["ini"], $_GET["getAvailableSquares"]["end"]);
+            return;
+        }
+
+        if (isset($_POST["pagar"])){
+            $this -> pay();
             return;
         }
 
@@ -96,6 +86,22 @@ class Controller {
         echo json_encode($db->listAvailableSquares($dateIni, $dateFin));
 
         $db -> desconnection();
+
+    }
+
+    private function pay () {
+
+        echo "Pagar";
+
+        require_once "lib/ConnectDB.php";
+        
+        $db = new ConnectDB();
+
+        $db->insertNew();
+
+        $db -> desconnection();
+
+        //Enviar email con los datos
 
     }
 

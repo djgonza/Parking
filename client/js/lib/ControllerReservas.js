@@ -9,8 +9,6 @@ class ControllerReservas extends SectionController {
 		this.step = 0;
 		this.validator;
 
-		
-
 		this.init(this);
 
 	}
@@ -54,6 +52,14 @@ class ControllerReservas extends SectionController {
 				controller.step = 0;
 			}
 			controller.setStep (controller.step);
+		});
+
+		$("#btnTransferencia").click(function () {
+			controller.pagar("transferecia");
+		});
+
+		$("#btnGiro").click(function () {
+			controller.pagar("giro");
 		});
 
 
@@ -100,6 +106,35 @@ class ControllerReservas extends SectionController {
 
 		this.element.children("article").hide();
 		$(this.element.children("article")[step]).show();
+
+	}
+
+	pagar (tipo) {
+
+		// Pedimos el html
+		$.ajax({
+
+			url: "index.php",
+			data: { 
+				"pagar": true,
+				
+			},
+			cache: false,
+			type: "post",
+			success: function(response) {
+
+				controller.element = $(response);
+				$(controller.father).append(controller.element);
+				controller.status = true;
+
+			},
+			error: function(xhr) {
+				
+				alert("Error al pedir seccion");
+
+			}
+
+		});
 
 	}
 

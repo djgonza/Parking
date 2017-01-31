@@ -30,7 +30,6 @@ class Picker {
 
 		// On change date ini
 		this.childrens[0].father.on ("changeDay", function (event, data){
-			console.log(data);
 			picker.childrens[2].setDayIni(parseInt(data) + 1);
 		});
 

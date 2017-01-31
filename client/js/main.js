@@ -8,7 +8,7 @@ $(function () {
 	Parking.UserInfo = {
 		"Date": {
 			"year"			: new Date().getMonth() < 7 ? new Date().getFullYear() : new Date().getFullYear() + 1,
-			"month"			: 6,
+			"month"			: 7,
 			"defaultDayIni" : 6, 
 			"defaultDayEnd"	: 15,
 			"dayIni" 		: 6, 

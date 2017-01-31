@@ -32,6 +32,9 @@ class ValidateForm {
 				case "numPersonas":
 					validador.numPersonas = element;
 				break;
+				case "numNinos":
+					validador.numNinos = element;
+				break;
 			}
 
 		});
@@ -82,19 +85,27 @@ class ValidateForm {
 			return;
 		}
 
-		if(!/^[0-9a-zA-Z]{5,9}$/.test(this.matricula.value)){
+		/*if(!/^[0-9a-zA-Z]{5,9}$/.test(this.matricula.value)){
 			status = false;
 			this.setMsg ("Indique una matricula valida");
 			this.showMsg();
 			this.matricula.focus();
 			return;
-		}
+		}*/
 
 		if(!/^[0-9]{1}$/.test(this.numPersonas.value)){
 			status = false;
 			this.setMsg ("En numero de personas esta compredido entre 0 y 9");
 			this.showMsg();
 			this.numPersonas.focus();
+			return;
+		}
+
+		if(!/^[0-9]{1}$/.test(this.numNinos.value)){
+			status = false;
+			this.setMsg ("En numero de niños esta compredido entre 0 y 9");
+			this.showMsg();
+			this.numNinos.focus();
 			return;
 		}
 

@@ -376,7 +376,17 @@ class MapSelectioSquares {
 	// Pinta una plaza
 	printSquare (code, square, selectable) {
 
+		this.ctx.save();
+
     	this.ctx.lineWidth = 1;
+    	
+    	//Rotation
+    	/*if(square.angle != 0){
+    		this.ctx.translate((square.x - this.printControl.x)/2, (square.y - this.printControl.y)/2);
+    		this.ctx.rotate(square.angle * Math.PI / 180);
+    		this.ctx.translate(-((square.x - this.printControl.x)/2), -((square.y - this.printControl.y)/2));
+    	}*/
+    	//square.angle != 0 ? this.ctx.rotate(square.angle * Math.PI / 180) : null;
 
     	if(selectable) {
     		this.ctx.fillStyle = square.color;
@@ -396,13 +406,15 @@ class MapSelectioSquares {
     	);
 
     	// Texto
-    	this.ctx.fillStyle = "#fff";
+    	this.ctx.fillStyle = "#ccc";
     	this.ctx.font = "16px sans-serif";
     	this.ctx.fillText(
     		code, 
     		square.x - this.printControl.x + (square.width / 2) - 6, 
     		square.y - this.printControl.y + (square.height / 2) + 6
     	);
+
+    	this.ctx.restore();
 
 	}
 
