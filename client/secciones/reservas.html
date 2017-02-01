@@ -9,28 +9,28 @@
 		<span id="msj" style="display: none; top: -4%;"></span>
 		<label>Datos Personales</label>
 		<div>
-			<input type="text" name="firstName" placeholder="Nombre y Apellidos">
+			<input type="text" name="firstName" placeholder="Nombre y Apellidos" value="Perico Perez">
 			<div style="flex-direction: row;">
 				<select name="documento" id="" style="width: 30%">
 					<option value="dni">DNI</option>
 					<option value="nif">NIF</option>
 				</select>
-				<input type="text" name="documentoVal" style="width: 65%">
+				<input type="text" name="documentoVal" value="12312334Z" style="width: 65%">
 			</div>
-			<input type="text" name="email" placeholder="Correo Electronico">
-			<input type="text" name="telefono" placeholder="Telefono">
+			<input type="text" name="email" value="aaa@gamil.com" placeholder="Correo Electronico">
+			<input type="text" name="telefono" value="123123123" placeholder="Telefono">
 		</div>
 		<label>Datos Vehiculo</label>
 		<div>
-			<input type="text" name="longitud" placeholder="Longitud o Plazas">
-			<input type="text" name="matricula" placeholder="Matricula (Opcional)">
+			<!--<input type="text" name="longitud" placeholder="Longitud o Plazas">-->
+			<input type="text" name="matricula" value="1231AA" placeholder="Matricula (Opcional)">
 		</div>
 		<label>Visitantes</label>
 		<div>
 			<label>Adultos</label>
-			<input type="text" name="numPersonas" placeholder="Numero de personas">
+			<input type="text" name="numPersonas" placeholder="Numero de personas" value="1">
 			<label>Menores de 12 Años</label>
-			<input type="text" name="numNinos" placeholder="Numero de personas">
+			<input type="text" name="numNinos" placeholder="Numero de personas" value="2">
 		</div>
 	</article>
 
@@ -47,7 +47,7 @@
 			<button id="btnGiro">Pagar Ahora</button>
 		</div>
 	</article>
-	<article>
+	<article style="display: none;">
 		La informacion necesaria para realizar el pago se ha enviado a su correo. Gracias por realizar se reserva.
 	</article>
 

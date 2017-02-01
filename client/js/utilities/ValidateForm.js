@@ -51,6 +51,11 @@ class ValidateForm {
 			this.showMsg();
 			this.firstName.focus();
 			return;
+		}else{
+			var name = this.firstName.value.split(" ");
+			Parking.UserInfo.PersonalInfo.Name = name[0];
+			Parking.UserInfo.PersonalInfo.FirstName = name[1];
+			Parking.UserInfo.PersonalInfo.SecondName = name[2];
 		}
 
 		if(!/^[a-zA-Z0-9]+$/.test(this.documentoVal.value)){
@@ -59,6 +64,8 @@ class ValidateForm {
 			this.showMsg();
 			this.documentoVal.focus();
 			return;
+		}else{
+			Parking.UserInfo.PersonalInfo.DNI = this.documentoVal.value;
 		}
 
 		if(!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z0-9]+$/.test(this.email.value)){
@@ -67,6 +74,8 @@ class ValidateForm {
 			this.showMsg();
 			this.email.focus();
 			return;
+		}else{
+			Parking.UserInfo.PersonalInfo.Email = this.email.value;
 		}
 
 		if(!/^[0-9]{9,15}$/.test(this.telefono.value)){
@@ -75,16 +84,20 @@ class ValidateForm {
 			this.showMsg();
 			this.telefono.focus();
 			return;
+		}else{
+			Parking.UserInfo.PersonalInfo.Tlf = this.telefono.value;
 		}
 
-		if(!/^[0-9]{0,5}$/.test(this.longitud.value)){
+		//Longitud
+		/*if(!/^[0-9]{0,5}$/.test(this.longitud.value)){
 			status = false;
 			this.setMsg ("Indique una Longitud valida");
 			this.showMsg();
 			this.longitud.focus();
 			return;
-		}
+		}*/
 
+		//Matricula
 		/*if(!/^[0-9a-zA-Z]{5,9}$/.test(this.matricula.value)){
 			status = false;
 			this.setMsg ("Indique una matricula valida");
@@ -92,6 +105,9 @@ class ValidateForm {
 			this.matricula.focus();
 			return;
 		}*/
+		if(this.matricula.value != ""){
+			Parking.UserInfo.PersonalInfo.Matricula = this.matricula.value;
+		}
 
 		if(!/^[0-9]{1}$/.test(this.numPersonas.value)){
 			status = false;
@@ -99,6 +115,8 @@ class ValidateForm {
 			this.showMsg();
 			this.numPersonas.focus();
 			return;
+		}else{
+			Parking.UserInfo.PersonalInfo.Adultos = this.numPersonas.value;
 		}
 
 		if(!/^[0-9]{1}$/.test(this.numNinos.value)){
@@ -107,6 +125,8 @@ class ValidateForm {
 			this.showMsg();
 			this.numNinos.focus();
 			return;
+		}else{
+			Parking.UserInfo.PersonalInfo.Niños = this.numNinos.value;
 		}
 
 		if(status){

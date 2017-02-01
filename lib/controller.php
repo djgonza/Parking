@@ -91,17 +91,22 @@ class Controller {
 
     private function pay () {
 
-        echo "Pagar";
+        //var_dump($_POST["data"]);
 
         require_once "lib/ConnectDB.php";
         
         $db = new ConnectDB();
 
-        $db->insertNew();
+        //Descomentar para ingresar en la db
+        //$db->insertNew($_POST["data"]);
 
-        $db -> desconnection();
+        $db->desconnection();
+
+        $mensaje = "";
 
         //Enviar email con los datos
+        mail ($_POST[5], "Realizar pago Parking Maria Ana Sanz", $mensaje);
+        
 
     }
 

@@ -23,7 +23,17 @@ $(function () {
 		},
 		"PersonalInfo"		: {
 			"Name"			: undefined,
-			"SecondName"	: undefined
+			"FirstName"		: undefined,
+			"SecondName"	: undefined,
+			"DNI"			: undefined,
+			"Tlf"			: undefined,
+			"Email"			: undefined,
+			"Adelantado"	: 0,
+			"Comentario"	: "",
+			"Matricula"		: undefined,
+			"Adultos"		: 0,
+			"Niños"			: 0,
+			"TipoPago"		: undefined
 		}
 	};
 	

@@ -199,6 +199,9 @@ class MapSelectioSquares {
 			type: "GET",
 			success: function(response) {
 
+
+				//console.log(response);
+
 				map.squaresValid = JSON.parse(response);
 				map.print ();
 
@@ -363,12 +366,27 @@ class MapSelectioSquares {
 	// Pinta todas las plazas
 	printAllSquares (map) {
 
-		$.each(this.squaresValid, function (code, square) {
+		/*$.each(this.squaresValid, function (code, square) {
 			if(square[0].toLowerCase().charAt(0) == Parking.UserInfo.Square.TypeV){
 				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()], true);
 			}else{
 				map.printSquare(square[0].toLowerCase(), map.squaresInfo[square[0].toLowerCase()], false);
 			}	
+		});*/
+
+		//revisar lo que devuelve el server
+
+		$.each(this.squaresInfo ,function (code, square) {
+
+			//console.log(code, square);
+			//console.log(map.squaresValid);
+
+			if(map.squaresValid.indexOf(code) > -1){
+				map.printSquare(code, square, true);
+			}else{
+				map.printSquare(code, square, false);
+			}
+
 		});
 
 	}
@@ -427,6 +445,7 @@ class MapSelectioSquares {
 		x += this.printControl.x;
 		y += this.printControl.y;
 
+		//cambiar squareInfo * squareValid
 		$.each(this.squaresInfo, function (code, square) {
 
 			var xMin = square.x;

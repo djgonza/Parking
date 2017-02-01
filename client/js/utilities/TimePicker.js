@@ -48,7 +48,10 @@ class TimePicker {
 
 	getTime () {
 
-		return this.hours + ":" + this.minutes; 
+		var hours = this.hours < 10 ? "0"+this.hours : this.hours;
+		var minutes = this.minute == 0 ? "00" : this.minutes;
+
+		return hours + ":" + minutes; 
 
 	}
 
@@ -129,6 +132,7 @@ class TimePicker {
 	updateInput () {
 
 		this.father.val((this.hours < 10 ? "0" + this.hours : this.hours) + ":" + (this.minutes == 0 ? "00" : this.minutes));
+
 	}
 
 }
