@@ -200,9 +200,15 @@ class MapSelectioSquares {
 			success: function(response) {
 
 
-				//console.log(response);
+				//console.log(JSON.parse(response));
+				var loadedSquares = Array();
+				$.each(JSON.parse(response), function (i, data){
+					loadedSquares.push(data.Plaza.toLowerCase());
+				});
 
-				map.squaresValid = JSON.parse(response);
+				//console.log(loadedSquares);
+
+				map.squaresValid = loadedSquares;
 				map.print ();
 
 			},
@@ -379,9 +385,10 @@ class MapSelectioSquares {
 		$.each(this.squaresInfo ,function (code, square) {
 
 			//console.log(code, square);
-			//console.log(map.squaresValid);
+			//console.log(map.squaresValid.indexOf(code));
+			//console.log(code.charAt(0), Parking.UserInfo.Square.TypeVe);
 
-			if(map.squaresValid.indexOf(code) > -1){
+			if(map.squaresValid.indexOf(code) > -1 && code.charAt(0) == Parking.UserInfo.Square.TypeV){
 				map.printSquare(code, square, true);
 			}else{
 				map.printSquare(code, square, false);
@@ -424,13 +431,13 @@ class MapSelectioSquares {
     	);
 
     	// Texto
-    	this.ctx.fillStyle = "#ccc";
+    	/*this.ctx.fillStyle = "#ccc";
     	this.ctx.font = "16px sans-serif";
     	this.ctx.fillText(
     		code, 
     		square.x - this.printControl.x + (square.width / 2) - 6, 
     		square.y - this.printControl.y + (square.height / 2) + 6
-    	);
+    	);*/
 
     	this.ctx.restore();
 
@@ -445,17 +452,18 @@ class MapSelectioSquares {
 		x += this.printControl.x;
 		y += this.printControl.y;
 
-		//cambiar squareInfo * squareValid
-		$.each(this.squaresInfo, function (code, square) {
+		$.each(this.squaresValid, function (i, squareId) {
+
+			var square = map.squaresInfo[squareId];
 
 			var xMin = square.x;
 			var yMin = square.y;
 			var xMax = square.x + square.width;
 			var yMax = square.y + square.height;
 
-			if(code.toLowerCase().charAt(0) == Parking.UserInfo.Square.TypeV){
+			if(squareId.charAt(0) == Parking.UserInfo.Square.TypeV){
 				if(x > xMin && x < xMax && y > yMin && y < yMax) {
-					map.value = code;
+					map.value = squareId;
 					map.print();
 					return false;
 				}

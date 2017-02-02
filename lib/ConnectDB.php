@@ -43,33 +43,11 @@ class ConnectDB {
 
 	function insertNew ($data) {
 
-		/*DROP PROCEDURE IF EXISTS `añadirTodo`$$
-CREATE DEFINER=`parkingdesk`@`localhost` PROCEDURE `añadirTodo`(in vDNI varchar(16), in vNombre varchar(40), in vApell1 varchar(40), in vApell2 varchar(40), 
-in vtelf varchar(16), in vemail varchar(40), in vAdelant decimal(5,2), in vComent varchar(200), in vMatricula varchar(8), 
-in vLlegada timestamp, in vSalida timestamp, in vCodPlaza varchar(3), in vAdultos int, in vMenores int, in vTipoPago varchar(20))
-BEGIN*/
-
-		$sql = 	"call añadirTodo (".
-				"$data[0],".
-				"$data[1],".
-				"$data[2],".
-				"$data[3],".
-				"$data[4],".
-				"$data[5],".
-				"$data[6],".
-				"$data[7],".
-				"$data[8],".
-				"$data[9],".
-				"$data[10],".
-				"$data[11],".
-				"$data[12],".
-				"$data[13],".
-				"$data[14],".
-		")";
+		$sql = "call añadirTodo (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
 		$judgment = $this->connection->prepare($sql);
 
-		$judgment->execute();
+		var_dump($judgment->execute($data));
 
 	}
 

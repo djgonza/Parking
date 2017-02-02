@@ -97,15 +97,14 @@ class Controller {
         
         $db = new ConnectDB();
 
-        //Descomentar para ingresar en la db
-        //$db->insertNew($_POST["data"]);
+        $db->insertNew($_POST["data"]);
 
         $db->desconnection();
 
-        $mensaje = "";
+        $mensaje = "Mensaje <a href='http://parking.net'>Link</a>";
 
         //Enviar email con los datos
-        mail ($_POST[5], "Realizar pago Parking Maria Ana Sanz", $mensaje);
+        //mail ($_POST[5], "Realizar pago Parking Maria Ana Sanz", $mensaje);
         
 
     }
