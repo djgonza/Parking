@@ -104,7 +104,7 @@ class Controller {
         $mensaje = "Mensaje <a href='http://parking.net'>Link</a>";
 
         //Enviar email con los datos
-        //mail ($_POST[5], "Realizar pago Parking Maria Ana Sanz", $mensaje);
+        mail ($_POST[5], "Realizar pago Parking Maria Ana Sanz", $mensaje);
         
 
     }

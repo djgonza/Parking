@@ -3,9 +3,9 @@
 class ConnectDB {
 
 	const DB_SERVER = "176.12.82.64";
-	const DB_USER = "parkingdesk";
-	const DB_PASSWD = "DeskParking2016*--";
-	const DB_NAME = "parking_desk";
+	const DB_USER = "parkingweb";
+	const DB_PASSWD = "WebParking2016*--";
+	const DB_NAME = "parkingweb";
 
 	private $connection;
 
